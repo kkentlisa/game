@@ -201,7 +201,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 91076931}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2113374170}
+        m_TargetAssemblyTypeName: GetIntoGame, Assembly-CSharp
+        m_MethodName: LoadMathGameScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &91076931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2056,7 +2068,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1028350886}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2113374170}
+        m_TargetAssemblyTypeName: GetIntoGame, Assembly-CSharp
+        m_MethodName: LoadEconomyGameScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1028350886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3625,7 +3649,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1889320422}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2113374170}
+        m_TargetAssemblyTypeName: GetIntoGame, Assembly-CSharp
+        m_MethodName: LoadProgrammingGameScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1889320422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3949,6 +3985,7 @@ GameObject:
   - component: {fileID: 2113374169}
   - component: {fileID: 2113374168}
   - component: {fileID: 2113374167}
+  - component: {fileID: 2113374170}
   m_Layer: 5
   m_Name: GradeBookPanel
   m_TagString: Untagged
@@ -4019,6 +4056,18 @@ RectTransform:
   m_AnchoredPosition: {x: 4, y: -18.399994}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2113374170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113374166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e746179893c004ea0aed1ba4f452ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GetIntoGame
 --- !u!1 &2143590368
 GameObject:
   m_ObjectHideFlags: 0
