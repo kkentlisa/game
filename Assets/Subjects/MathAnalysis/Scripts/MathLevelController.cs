@@ -16,6 +16,9 @@ public class MathLevelController : MonoBehaviour
     [Header("Настройки виньеток")]
     public SpriteRenderer[] vignetteSprites;
 
+    [Header("Связь со сном")]
+    public SleepMechanicController sleepScript;
+
     void Start()
     {
         ApplyDifficultySettings();
@@ -56,18 +59,24 @@ public class MathLevelController : MonoBehaviour
     {
         if (cameraScript != null) cameraScript.shakeIntensity = 0f;
         SetVignettesAlpha(0f);
+
+        if (sleepScript != null) sleepScript.SetSleepSpeed(0.05f);
     }
 
     private void SetupGrade4()
     {
         if (cameraScript != null) cameraScript.shakeIntensity = 0.5f;
         SetVignettesAlpha(0.7f);
+
+        if (sleepScript != null) sleepScript.SetSleepSpeed(0.1f);
     }
 
     private void SetupGrade5()
     {
         if (cameraScript != null) cameraScript.shakeIntensity = 1.2f;
         SetVignettesAlpha(0.9f);
+
+        if (sleepScript != null) sleepScript.SetSleepSpeed(0.2f);
 
         StartCoroutine(FlickerVignette());
     }
