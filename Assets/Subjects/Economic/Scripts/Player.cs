@@ -4,7 +4,7 @@ public class Player : MonoBehaviour
 {
     public static Player Instance { get; private set; }
 
-    [SerializeField] private float movingSpeed = 5f;
+    [SerializeField] private float movingSpeed = 7f;
 
     private Rigidbody2D rb;
 
