@@ -6,8 +6,22 @@ public class RoomController : MonoBehaviour
     public Light2D roomLight;
     public Collider2D doorCollider;
 
+    private GameObject lockedDoorVisual;
+
     public bool isOpen = false;
     public bool isLightOn = false;
+
+    private void Awake()
+    {
+        if (doorCollider != null)
+        {
+            Transform visualTransform = doorCollider.transform.Find("DoorVisual");
+            if (visualTransform != null)
+            {
+                lockedDoorVisual = visualTransform.gameObject;
+            }
+        }
+    }
 
     public void SetupRoom(bool open)
     {
@@ -16,11 +30,17 @@ public class RoomController : MonoBehaviour
         if (doorCollider != null)
         {
             doorCollider.isTrigger = isOpen;
+
+            if (lockedDoorVisual != null)
+            {
+                lockedDoorVisual.SetActive(!isOpen);
+            }
         }
 
         if (roomLight != null)
         {
             roomLight.enabled = false;
+            isLightOn = false;
         }
     }
 
