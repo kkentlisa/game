@@ -6,12 +6,19 @@ public class GameInput : MonoBehaviour
 {
     public static GameInput Instance {  get; private set; }
 
+    public event System.Action OnAttack;
+
     private PlayerInputActions playerInputActions;
     private void Awake()
     {
         Instance = this;
         playerInputActions = new PlayerInputActions();
         playerInputActions.Enable();
+
+        playerInputActions.asset.FindAction("Hit").performed += context =>
+        {
+            OnAttack?.Invoke();
+        };
     }
 
     public Vector2 GetMovementVector()
