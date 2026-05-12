@@ -121,7 +121,7 @@ public class MazeGenerator : MonoBehaviour
         if (cell.y < height - 1 && !maze[cell.x, cell.y + 1].visited) neighbors.Add(maze[cell.x, cell.y + 1]); 
         if (cell.x < width - 1 && !maze[cell.x + 1, cell.y].visited) neighbors.Add(maze[cell.x + 1, cell.y]); 
         if (cell.y > 0 && !maze[cell.x, cell.y - 1].visited) neighbors.Add(maze[cell.x, cell.y - 1]); 
-        if (cell.x > 0 && !maze[cell.x - 1, cell.y].visited) neighbors.Add(maze[cell.x - 1, cell.y]); =
+        if (cell.x > 0 && !maze[cell.x - 1, cell.y].visited) neighbors.Add(maze[cell.x - 1, cell.y]); 
         return neighbors;
     }
 

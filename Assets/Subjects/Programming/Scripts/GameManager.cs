@@ -4,14 +4,14 @@ public class GameManager : MonoBehaviour
 {
     public int lives = 3;
     public GameObject quizPanel;
-    private AssistantFollow currentAssistant;
+    private AssistantAStar currentAssistant;
 
     void Start()
     {
         quizPanel.SetActive(false); 
     }
 
-    public void StartQuiz(AssistantFollow assistant)
+    public void StartQuiz(AssistantAStar assistant)
     {
         currentAssistant = assistant;
         lives--;

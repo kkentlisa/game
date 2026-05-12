@@ -34,10 +34,10 @@ public class PlayerMovement : MonoBehaviour
     {
         GameObject candy = Instantiate(candyPrefab, transform.position, Quaternion.identity);
         
-        AssistantFollow assistant = FindObjectOfType<AssistantFollow>();
+        AssistantAStar assistant = FindObjectOfType<AssistantAStar>();
         if (assistant != null)
         {
-            assistant.DistractWithCandy(candy);
+           // assistant.DistractWithCandy(candy);
         }
     }
 }
