@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dc9f64781a773d84e9d73867ea2b235b
+guid: 1df5ffdc17316754cb21524ff9452a33
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,177 +110,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: walk_Right_Up_0
+      name: walk_Right_Down_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 48
         height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5000001, y: 0.35950142}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6687e87b7cef3054599b5314ae8adf03
-      internalID: -64808662
+      spriteID: 4fd82e54d73285345990790e025c6c4b
+      internalID: 196123184
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_Right_Up_1
+      name: walk_Right_Down_1
       rect:
         serializedVersion: 2
         x: 48
         y: 0
         width: 48
         height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.49531683, y: 0.3489639}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 163ddb46b2b04bb4bb396edf468352b5
-      internalID: -2115788971
+      spriteID: e7b4f2e5fca77fd418d79d7ce7c57849
+      internalID: 184328442
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_Right_Up_2
+      name: walk_Right_Down_2
       rect:
         serializedVersion: 2
         x: 96
         y: 0
         width: 48
         height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36652625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b31275bc501cbe46a61859386bf37f4
-      internalID: -1589594229
+      spriteID: b0720332ac8020d4d9daf41a21434828
+      internalID: 1341122430
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_Right_Up_3
+      name: walk_Right_Down_3
       rect:
         serializedVersion: 2
         x: 144
         y: 0
         width: 48
         height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.48595047, y: 0.36301368}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c2171a4068b85a41b92d9bc944c03e8
-      internalID: 1811483945
+      spriteID: 7c7ef09a116af4e4eb25dd7c3423d564
+      internalID: 1280875215
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_Right_Up_4
+      name: walk_Right_Down_4
       rect:
         serializedVersion: 2
         x: 192
         y: 0
         width: 48
         height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.4953165, y: 0.3524763}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d946d436c6183e4b8d1b70a18de2844
-      internalID: 1450330250
+      spriteID: a4e3959af9fb1a3498ac445f64c144ac
+      internalID: 31015350
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_Right_Up_5
+      name: walk_Right_Down_5
       rect:
         serializedVersion: 2
         x: 240
         y: 0
         width: 48
         height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.33842638}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84051f44bdf54a04887110ffde0ef279
-      internalID: -48121282
+      spriteID: 2baef01dcf114a54d9356884d1791714
+      internalID: -723429350
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_Right_Up_6
+      name: walk_Right_Down_6
       rect:
         serializedVersion: 2
         x: 288
         y: 0
         width: 48
         height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5046832, y: 0.3349141}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d071813ddd0adb240b611fe879405a1a
-      internalID: -35478701
+      spriteID: dfcdd3f0ba09558448dec95de03d8985
+      internalID: -1714061704
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_Right_Up_7
+      name: walk_Right_Down_7
       rect:
         serializedVersion: 2
         x: 336
         y: 0
         width: 48
         height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5187327, y: 0.33491397}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 738bea248bdfd7c4cae9a7bbddbee29f
-      internalID: -1074186398
+      spriteID: cd7bb135eb5bba94bbbcd4a6869181a6
+      internalID: -34405003
       vertices: []
       indices: 
       edges: []
@@ -301,14 +301,14 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":8.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      walk_Right_Up_0: -64808662
-      walk_Right_Up_1: -2115788971
-      walk_Right_Up_2: -1589594229
-      walk_Right_Up_3: 1811483945
-      walk_Right_Up_4: 1450330250
-      walk_Right_Up_5: -48121282
-      walk_Right_Up_6: -35478701
-      walk_Right_Up_7: -1074186398
+      walk_Right_Down_0: 196123184
+      walk_Right_Down_1: 184328442
+      walk_Right_Down_2: 1341122430
+      walk_Right_Down_3: 1280875215
+      walk_Right_Down_4: 31015350
+      walk_Right_Down_5: -723429350
+      walk_Right_Down_6: -1714061704
+      walk_Right_Down_7: -34405003
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

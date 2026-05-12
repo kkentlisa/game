@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1df5ffdc17316754cb21524ff9452a33
+guid: d38bd920dfb7c9d468eed1310d573bd9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,177 +110,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: walk_Right_Down_0
+      name: 19_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 48
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 11
+        y: 6
+        width: 27
+        height: 54
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4fd82e54d73285345990790e025c6c4b
-      internalID: 196123184
+      spriteID: d2d6ad68a4c155a4bb7ebbd3410ae1db
+      internalID: -529761288
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_Right_Down_1
+      name: 19_1
       rect:
         serializedVersion: 2
-        x: 48
-        y: 0
-        width: 48
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 62
+        y: 9
+        width: 28
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7b4f2e5fca77fd418d79d7ce7c57849
-      internalID: 184328442
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walk_Right_Down_2
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 48
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b0720332ac8020d4d9daf41a21434828
-      internalID: 1341122430
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walk_Right_Down_3
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 0
-        width: 48
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7c7ef09a116af4e4eb25dd7c3423d564
-      internalID: 1280875215
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walk_Right_Down_4
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 48
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a4e3959af9fb1a3498ac445f64c144ac
-      internalID: 31015350
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walk_Right_Down_5
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 0
-        width: 48
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2baef01dcf114a54d9356884d1791714
-      internalID: -723429350
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walk_Right_Down_6
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 0
-        width: 48
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dfcdd3f0ba09558448dec95de03d8985
-      internalID: -1714061704
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walk_Right_Down_7
-      rect:
-        serializedVersion: 2
-        x: 336
-        y: 0
-        width: 48
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cd7bb135eb5bba94bbbcd4a6869181a6
-      internalID: -34405003
+      spriteID: d6d9fa4bce577b046b7f706b2be9234d
+      internalID: 1022382489
       vertices: []
       indices: 
       edges: []
@@ -301,14 +169,16 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":8.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      walk_Right_Down_0: 196123184
-      walk_Right_Down_1: 184328442
-      walk_Right_Down_2: 1341122430
-      walk_Right_Down_3: 1280875215
-      walk_Right_Down_4: 31015350
-      walk_Right_Down_5: -723429350
-      walk_Right_Down_6: -1714061704
-      walk_Right_Down_7: -34405003
+      19_0: -529761288
+      19_1: 1022382489
+      Idle_Down_0: 1686641739
+      Idle_Down_1: -1476650883
+      Idle_Down_2: -356249973
+      Idle_Down_3: 251789326
+      Idle_Down_4: 1479803241
+      Idle_Down_5: 2146267665
+      Idle_Down_6: 1682272149
+      Idle_Down_7: -650621342
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

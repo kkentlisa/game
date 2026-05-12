@@ -17,10 +17,23 @@ public class LevelManager : MonoBehaviour
     public void GenerateLevel()
     {
         int openRooms = 0;
+        float itemsPercentage = 0f;
 
-        if (difficulty == 3) openRooms = 18;
-        else if (difficulty == 4) openRooms = 12;
-        else if (difficulty == 5) openRooms = 6;
+        if (difficulty == 3)
+        {
+            openRooms = 18;
+            itemsPercentage = 0.7f;
+        }
+        else if (difficulty == 4)
+        {
+            openRooms = 12;
+            itemsPercentage = 0.5f;
+        }
+        else if (difficulty == 5)
+        {
+            openRooms = 6;
+            itemsPercentage = 0.3f;
+        }
 
         foreach (var room in allRooms)
         {
@@ -37,9 +50,47 @@ public class LevelManager : MonoBehaviour
             shuffledRooms[randomIndex] = temp;
         }
 
+        List<GameObject> accessibleFurniture = new List<GameObject>();
+
         for (int i = 0; i < openRooms; i++)
         {
             shuffledRooms[i].SetupRoom(true);
+
+            Transform[] allChildren = shuffledRooms[i].GetComponentsInChildren<Transform>(true);
+
+            foreach (Transform child in allChildren)
+            {
+                if (child.CompareTag("Destructible"))
+                {
+                    accessibleFurniture.Add(child.gameObject);
+                }
+            }
+        }
+
+        int finalCount = Mathf.RoundToInt(accessibleFurniture.Count * itemsPercentage);
+
+
+        for (int i = 0; i < accessibleFurniture.Count; i++)
+        {
+            GameObject temp = accessibleFurniture[i];
+            int randomIndex = Random.Range(i, accessibleFurniture.Count);
+            accessibleFurniture[i] = accessibleFurniture[randomIndex];
+            accessibleFurniture[randomIndex] = temp;
+        }
+
+        for (int i = 0; i < accessibleFurniture.Count; i++)
+        {
+            var itemScript = accessibleFurniture[i].GetComponent<FurnitureItem>();
+            if (itemScript == null) itemScript = accessibleFurniture[i].AddComponent<FurnitureItem>();
+
+            if (i < finalCount)
+            {
+                itemScript.SetAsTarget(true);
+            }
+            else
+            {
+                itemScript.SetAsTarget(false);
+            }
         }
     }
 }
