@@ -5,31 +5,16 @@ using System.Collections.Generic;
 public class GridManager : MonoBehaviour
 {
     public LayerMask obstacleLayer;
-    public int width = 200; 
-    public int height = 200;
-    public float cellSize = 0.1f;
+    public int width = 20; 
+    public int height = 20;
+    public float cellSize = 0.01f;
 
     private PathNode[,] grid;
 
-    void Awake() 
-    { 
-        GenerateGrid(); 
-        StartCoroutine(RefreshGridRoutine());
-    }
-
-    IEnumerator RefreshGridRoutine()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(15f);
-            GenerateGrid();
-        }
-    }
-
     public void GenerateGrid()
     {
+        Physics2D.SyncTransforms();
         grid = new PathNode[width, height];
-        Vector3 origin = transform.position;
 
         for (int x = 0; x < width; x++)
         {
@@ -37,12 +22,13 @@ public class GridManager : MonoBehaviour
             {
                 Vector3 worldPoint = GetWorldPosition(x, y);
 
-                Collider2D hit = Physics2D.OverlapCircle(worldPoint, cellSize * 0.45f, obstacleLayer);
+                Collider2D hit = Physics2D.OverlapCircle(worldPoint, cellSize * 0.4f, obstacleLayer);
             
                 bool isWalkable = (hit == null);
                 grid[x, y] = new PathNode(x, y, isWalkable);
             }
         }
+        Debug.Log("Сетка навигации обновлена!");
     }
 
     void OnDrawGizmos()
