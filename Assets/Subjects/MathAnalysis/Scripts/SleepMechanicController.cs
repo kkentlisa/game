@@ -26,7 +26,6 @@ public class SleepMechanicController : MonoBehaviour
     public void SetSleepSpeed(float newSpeed)
     {
         fallAsleepSpeed = newSpeed;
-        Debug.Log("Скорость засыпания изменена на: " + newSpeed);
     }
 
     void Update()
@@ -38,12 +37,12 @@ public class SleepMechanicController : MonoBehaviour
 
         if (warningSignRenderer != null)
         {
-            float signAlpha = Mathf.InverseLerp(0.4f, 0.9f, sleepiness);
+            float signAlpha = Mathf.InverseLerp(0.1f, 0.6f, sleepiness);
             warningSignRenderer.color = new Color(1f, 1f, 1f, signAlpha);
 
             if (signAlpha > 0.01f)
             {
-                float pulse = 1f + Mathf.PingPong(Time.time * 2f, 0.1f);
+                float pulse = 1f + Mathf.PingPong(Time.time * 0.2f, 0.04f);
                 warningSignRenderer.transform.localScale = initialSignScale * pulse;
             }
         }
@@ -52,7 +51,6 @@ public class SleepMechanicController : MonoBehaviour
         {
             sleepiness -= wakeUpForce;
             if (sleepiness < 0) sleepiness = 0;
-            Debug.Log("Сопротивление сну! Текущий уровень: " + (sleepiness * 100).ToString("F0") + "%");
         }
 
         if (sleepiness >= 1f)
