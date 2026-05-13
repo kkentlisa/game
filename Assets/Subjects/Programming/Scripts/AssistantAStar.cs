@@ -10,6 +10,7 @@ public class AssistantAStar : MonoBehaviour
     
     private List<PathNode> currentPath = new List<PathNode>();
     private Rigidbody2D rb;
+    private bool isCooldown = false;
 
     void Start()
     {
@@ -21,7 +22,7 @@ public class AssistantAStar : MonoBehaviour
     {
         while (true)
         {
-            if (playerTransform != null && gridManager != null)
+            if (playerTransform != null && gridManager != null && !isCooldown)
             {
                 FindPath(transform.position, playerTransform.position);
             }
@@ -80,6 +81,26 @@ public class AssistantAStar : MonoBehaviour
             }
         }
     }
+    public void StartCooldown()
+    {
+        if (!isCooldown)
+        {
+            StartCoroutine(CooldownRoutine());
+        }
+    }
+    private IEnumerator CooldownRoutine()
+    {
+        isCooldown = true;
+        currentPath.Clear();
+        rb.linearVelocity = Vector2.zero; 
+
+        Debug.Log("Ассистент на кулдауне...");
+    
+        yield return new WaitForSeconds(5f); 
+    
+        isCooldown = false;
+        Debug.Log("Ассистент снова в деле!");
+    }
 
     void RetracePath(PathNode start, PathNode end)
     {
@@ -103,7 +124,7 @@ public class AssistantAStar : MonoBehaviour
             
             rb.linearVelocity = direction * speed;
 
-            if (Vector2.Distance(rb.position, targetPos) < 0.08f)
+            if (Vector2.Distance(rb.position, targetPos) < 0.05f)
             {
                 currentPath.RemoveAt(0);
             }
