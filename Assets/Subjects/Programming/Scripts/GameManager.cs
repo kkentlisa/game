@@ -4,16 +4,14 @@ public class GameManager : MonoBehaviour
 {
     public int lives = 3;
     public GameObject quizPanel;
-    private AssistantAStar currentAssistant;
 
     void Start()
     {
         quizPanel.SetActive(false); 
     }
 
-    public void StartQuiz(AssistantAStar assistant)
+    public void StartQuiz()
     {
-        currentAssistant = assistant;
         lives--;
         Debug.Log("Попался! Осталось жизней: " + lives);
 
@@ -31,10 +29,6 @@ public class GameManager : MonoBehaviour
     {
         quizPanel.SetActive(false);
         Time.timeScale = 1f;
-
-        if (currentAssistant != null)
-        {
-            currentAssistant.StartCooldown();
-        }
+        
     }
 }

@@ -34,10 +34,5 @@ public class PlayerMovement : MonoBehaviour
     {
         GameObject candy = Instantiate(candyPrefab, transform.position, Quaternion.identity);
         
-        AssistantAStar assistant = FindObjectOfType<AssistantAStar>();
-        if (assistant != null)
-        {
-           // assistant.DistractWithCandy(candy);
-        }
     }
 }
