@@ -42,9 +42,12 @@ public class GameTimer : MonoBehaviour
         float totalLessonMinutes = 95f;
         float minutesPassed = progress * totalLessonMinutes;
 
+
+        int roundedMinutesPassed = Mathf.FloorToInt(minutesPassed / 5) * 5;
+
         int startMinutesTotal = (8 * 60) + 45;
 
-        int currentTotalMinutes = startMinutesTotal + Mathf.FloorToInt(minutesPassed);
+        int currentTotalMinutes = startMinutesTotal + roundedMinutesPassed;
 
         int hours = currentTotalMinutes / 60;
         int minutes = currentTotalMinutes % 60;
