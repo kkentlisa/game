@@ -1061,7 +1061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 981009135a695694d939c34482a4e758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  currentDifficulty: 1
+  currentDifficulty: 2
   notesToCollect: 0
   cameraScript: {fileID: 179788067}
   bgRenderer: {fileID: 1479134809}
