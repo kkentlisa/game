@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic; 
+using System.Collections.Generic;
 
 public class MathLevelController : MonoBehaviour
 {
@@ -8,6 +8,9 @@ public class MathLevelController : MonoBehaviour
 
     [Header("Текущая пересдача")]
     public Difficulty currentDifficulty;
+
+    [Header("Цели уровня")]
+    public int notesToCollect;
 
     [Header("Ссылки на объекты")]
     public CameraMovement cameraScript;
@@ -24,7 +27,7 @@ public class MathLevelController : MonoBehaviour
         ApplyDifficultySettings();
     }
 
-    void ApplyDifficultySettings()
+    public void ApplyDifficultySettings()
     {
         StopAllCoroutines();
 
@@ -33,12 +36,15 @@ public class MathLevelController : MonoBehaviour
         switch (currentDifficulty)
         {
             case Difficulty.Grade3:
+                notesToCollect = 4;
                 SetupGrade3();
                 break;
             case Difficulty.Grade4:
+                notesToCollect = 8;
                 SetupGrade4();
                 break;
             case Difficulty.Grade5:
+                notesToCollect = 12;
                 SetupGrade5();
                 break;
         }
@@ -48,10 +54,7 @@ public class MathLevelController : MonoBehaviour
     {
         foreach (SpriteRenderer sprite in vignetteSprites)
         {
-            if (sprite != null)
-            {
-                sprite.color = new Color(1f, 1f, 1f, alpha);
-            }
+            if (sprite != null) sprite.color = new Color(1f, 1f, 1f, alpha);
         }
     }
 
@@ -59,7 +62,6 @@ public class MathLevelController : MonoBehaviour
     {
         if (cameraScript != null) cameraScript.shakeIntensity = 0f;
         SetVignettesAlpha(0f);
-
         if (sleepScript != null) sleepScript.SetSleepSpeed(0.05f);
     }
 
@@ -67,7 +69,6 @@ public class MathLevelController : MonoBehaviour
     {
         if (cameraScript != null) cameraScript.shakeIntensity = 0.5f;
         SetVignettesAlpha(0.7f);
-
         if (sleepScript != null) sleepScript.SetSleepSpeed(0.1f);
     }
 
@@ -75,9 +76,7 @@ public class MathLevelController : MonoBehaviour
     {
         if (cameraScript != null) cameraScript.shakeIntensity = 1.2f;
         SetVignettesAlpha(0.9f);
-
         if (sleepScript != null) sleepScript.SetSleepSpeed(0.2f);
-
         StartCoroutine(FlickerVignette());
     }
 
@@ -86,12 +85,11 @@ public class MathLevelController : MonoBehaviour
         while (currentDifficulty == Difficulty.Grade5)
         {
             yield return new WaitForSeconds(Random.Range(2f, 5f));
-
             if (Random.value > 0.5f)
             {
-                SetVignettesAlpha(1f); 
+                SetVignettesAlpha(1f);
                 yield return new WaitForSeconds(0.1f);
-                SetVignettesAlpha(0.9f); 
+                SetVignettesAlpha(0.9f);
             }
         }
     }
