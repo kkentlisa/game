@@ -83,6 +83,7 @@ public class LevelManager : MonoBehaviour
             var itemScript = accessibleFurniture[i].GetComponent<FurnitureItem>();
             if (itemScript == null) itemScript = accessibleFurniture[i].AddComponent<FurnitureItem>();
 
+
             if (i < finalCount)
             {
                 itemScript.SetAsTarget(true);
