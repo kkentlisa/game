@@ -12,8 +12,6 @@ public class MazeGenerator : MonoBehaviour
 
     [Header("Префабы стен")]
     public GameObject wallPrefab; 
-    public GridManager gridManager;
-
     private List<GameObject> spawnedWalls = new List<GameObject>();
     private MazeCell[,] maze;
 
@@ -32,7 +30,6 @@ public class MazeGenerator : MonoBehaviour
 
     void Start()
     {
-        if (gridManager == null) gridManager = GetComponent<GridManager>();
         offset = transform.position;
         StartCoroutine(MazeCycleRoutine());
     }
@@ -42,8 +39,6 @@ public class MazeGenerator : MonoBehaviour
         while (true)
         {
             GenerateNewMaze();
-            if (gridManager != null) gridManager.GenerateGrid();
-            
             yield return new WaitForSeconds(15f);
         }
     }
