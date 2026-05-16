@@ -81,7 +81,7 @@ public class LevelManager : MonoBehaviour
         for (int i = 0; i < accessibleFurniture.Count; i++)
         {
             var itemScript = accessibleFurniture[i].GetComponent<FurnitureItem>();
-            if (itemScript == null) itemScript = accessibleFurniture[i].AddComponent<FurnitureItem>();
+            if (itemScript == null) continue;
 
 
             if (i < finalCount)

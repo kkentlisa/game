@@ -56,25 +56,38 @@ public class FurnitureItem : MonoBehaviour
     {
         if (coinPrefab == null) return;
 
+        int wallLayerMask = LayerMask.GetMask("Walls");
+
         int count = Random.Range(minCoins, maxCoins + 1);
         for (int i = 0; i < count; i++)
         {
-            GameObject coin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
+            Vector2 randomDirection = Random.insideUnitCircle.normalized;
+            Vector3 spawnPosition = transform.position + (Vector3)randomDirection * 0.25f; ;
+
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, randomDirection, 0.6f, wallLayerMask);
+
+            if (hit.collider != null)
+            {
+                randomDirection = -randomDirection;
+                spawnPosition = transform.position + (Vector3)randomDirection * 0.3f;
+            }
+
+
+            GameObject coin = Instantiate(coinPrefab, spawnPosition, Quaternion.identity);
 
             Rigidbody2D rb = coin.GetComponent<Rigidbody2D>();
 
             if (rb != null)
             {
-                Vector2 randomDirection = Random.insideUnitCircle.normalized;
-                float randomForse = Random.Range(1.5f, 3.5f);
-                rb.AddForce(randomDirection * randomForse, ForceMode2D.Impulse);
+                float randomForce = Random.Range(1.0f, 2.2f);
+                rb.AddForce(randomDirection * randomForce, ForceMode2D.Impulse);
             }
         }
     }
 
     private IEnumerator DestroyAnimation()
     {
-        if (!spriteRenderer != null)
+        if (spriteRenderer != null)
         {
             for (int i = 0; i < 6; i++)
             {
