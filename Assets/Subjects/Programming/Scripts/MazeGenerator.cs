@@ -36,10 +36,37 @@ public class MazeGenerator : MonoBehaviour
 
     IEnumerator MazeCycleRoutine()
     {
-        while (true)
+        bool shouldRepeat = true;
+
+        while (shouldRepeat)
         {
             GenerateNewMaze();
-            yield return new WaitForSeconds(15f);
+
+            float delay = 15f; 
+
+            if (GameManager.Instance != null)
+            {
+                switch (GameManager.Instance.baseDifficulty)
+                {
+                    case LevelDifficulty.Easy:
+                        delay = 0f;
+                        shouldRepeat = false; 
+                        break;
+
+                    case LevelDifficulty.Medium:
+                        delay = 30f; 
+                        break;
+
+                    case LevelDifficulty.Hard:
+                        delay = 10f;
+                        break;
+                }
+            }
+
+            if (shouldRepeat)
+            {
+                yield return new WaitForSeconds(delay);
+            }
         }
     }
 
