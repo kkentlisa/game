@@ -6,11 +6,7 @@ public class Trap : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager gm = FindObjectOfType<GameManager>();
-            if (gm != null)
-            {
-                gm.StartQuiz(); 
-            }
+            GameManager.Instance.TakeDamage();
             Destroy(gameObject);
         }
     }
