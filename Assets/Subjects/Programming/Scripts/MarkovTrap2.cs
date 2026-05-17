@@ -17,9 +17,24 @@ public class MarkovTrapAI2 : MonoBehaviour
     void Start()
     {
         lastCell = GetPlayerCell();
-        InvokeRepeating("AnalyzeAndTrap", tickRate, tickRate);
-    }
+        StartCoroutine(MarkovAICycleRoutine());    }
 
+    System.Collections.IEnumerator MarkovAICycleRoutine()
+    {
+        while (true)
+        {
+            AnalyzeAndTrap();
+
+            float dynamicTickRate = 1.5f;
+            if (GameManager.Instance != null)
+            {
+                dynamicTickRate = GameManager.Instance.EvaluateDecisionTree().aiTickRate;
+            }
+
+            yield return new WaitForSeconds(dynamicTickRate);
+        }
+    }
+    
     void AnalyzeAndTrap()
     {
         Vector2Int currentCell = GetPlayerCell();
@@ -76,8 +91,8 @@ public class MarkovTrapAI2 : MonoBehaviour
     void SpawnTrap(Vector2Int currentCell, string direction)
     {
         Vector3 spawnPos = new Vector3(currentCell.x * cellSize, currentCell.y * cellSize, 0);
-        
-        float step = cellSize;
+
+        float step = cellSize*3;
         if (direction == "Right") spawnPos += new Vector3(step, 0, 0);
         else if (direction == "Left") spawnPos -= new Vector3(step, 0, 0);
         else if (direction == "Up") spawnPos += new Vector3(0, step, 0);
