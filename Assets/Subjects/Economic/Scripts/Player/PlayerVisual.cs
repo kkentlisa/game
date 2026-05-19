@@ -36,11 +36,14 @@ public class PlayerVisual : MonoBehaviour
         Vector3 playerPos = Player.Instance.GetPlayerPosition();
 
         bool shouldFlip = mousePos.x < playerPos.x;
-        spriteRenderer.flipX = shouldFlip;
 
-        if (hitSpriteRenderer != null)
+        if(shouldFlip)
         {
-            hitSpriteRenderer.flipX = shouldFlip;
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+        }
+        else
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);
         }
 
         bool lookingUp = mousePos.y > playerPos.y;

@@ -1,12 +1,12 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class GameInput : MonoBehaviour
 {
     public static GameInput Instance {  get; private set; }
 
-    public event System.Action OnAttack;
+    public event Action OnAttack;
 
     private PlayerInputActions playerInputActions;
     private void Awake()
@@ -14,11 +14,9 @@ public class GameInput : MonoBehaviour
         Instance = this;
         playerInputActions = new PlayerInputActions();
         playerInputActions.Enable();
+        playerInputActions.Attack.Enable();
 
-        playerInputActions.asset.FindAction("Hit").performed += context =>
-        {
-            OnAttack?.Invoke();
-        };
+        playerInputActions.Attack.Hit.performed += _ => OnAttack?.Invoke();
     }
 
     public Vector2 GetMovementVector()
