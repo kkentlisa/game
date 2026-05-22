@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fa0352a4d56abd42ad2fc69deb72448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifierVolume
-  m_Size: {x: 1.9214897, y: 1.9968929, z: 4}
-  m_Center: {x: 0.0542202, y: 0.8057046, z: 0}
+  m_Size: {x: 2.1025276, y: 2.074483, z: 4}
+  m_Center: {x: 0.04990959, y: 0.7669096, z: 0}
   m_Area: 1
   m_AffectedAgents: ffffffff

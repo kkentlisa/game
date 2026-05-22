@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float roamingDistanceMin = 2f;
     [SerializeField] private float roamingTimerMax = 2f;
 
-    [SerializeField] private float chasingDistance = 4f;
+    [SerializeField] private float chasingDistance = 10f;
     [SerializeField] private float chasingSpeedMultiplier = 1.5f;
 
     [SerializeField] private float attackingDistance = 2f;
@@ -58,6 +58,11 @@ public class EnemyAI : MonoBehaviour
     private FurnitureItem targetFurniture = null;
     private CoinsPickup targetCoin = null;
 
+    private Vector3 stuckCheckPosition;
+    private float stuckCheckTimer = 0f;
+    private float stuckCheckInterval = 1f;
+    private float stuckThreshold = 0.2f;
+
     private enum State
     {
         Idle,
@@ -92,6 +97,7 @@ public class EnemyAI : MonoBehaviour
     {
         StateHandler();
         MovementDirectionHandler();
+        StuckHandler();
     }
 
     private void StateHandler()
@@ -209,7 +215,7 @@ public class EnemyAI : MonoBehaviour
     {
         CoinsPickup nearest = null;
         float nearestDist = float.MaxValue;
-        float searchRadius = chasingDistance * 2f;
+        float searchRadius = chasingDistance;
 
         foreach (CoinsPickup coin in FindObjectsByType<CoinsPickup>(FindObjectsSortMode.None))
         {
@@ -236,7 +242,7 @@ public class EnemyAI : MonoBehaviour
 
             float dist = Vector3.Distance(transform.position, item.transform.position);
 
-            if (dist <  nearestDist)
+            if (dist < nearestDist)
             {
                 nearestDist = dist;
                 nearest = item;
@@ -263,9 +269,9 @@ public class EnemyAI : MonoBehaviour
             {
                 ChangeFacingDirection(lastPosition, transform.position);
             }
-            else if (currentState == State.Attacking) 
+            else if (currentState == State.Attacking)
             {
-                 ChangeFacingDirection(transform.position, Player.Instance.transform.position);
+                ChangeFacingDirection(transform.position, Player.Instance.transform.position);
             }
             else if (currentState == State.BreakingFurniture && targetFurniture != null)
             {
@@ -366,5 +372,27 @@ public class EnemyAI : MonoBehaviour
         targetFurniture = null;
         targetCoin = null;
         EnterRoaming();
+    }
+
+    private void StuckHandler()
+    {
+        if (!IsRunning) return;
+        if (currentState == State.Attacking || currentState == State.BreakingFurniture) return;
+
+        stuckCheckTimer -= Time.deltaTime;
+        if (stuckCheckTimer > 0f) return;
+
+        stuckCheckTimer = stuckCheckInterval;
+
+        float movedDistance = Vector3.Distance(transform.position, stuckCheckPosition);
+
+        if (movedDistance < stuckThreshold)
+        {
+            targetFurniture = null;
+            targetCoin = null;
+            navMeshAgent.ResetPath();
+            EnterRoaming();
+        }
+        stuckCheckPosition = transform.position;
     }
 }
