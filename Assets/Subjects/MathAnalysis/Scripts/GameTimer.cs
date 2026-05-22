@@ -62,7 +62,14 @@ public class GameTimer : MonoBehaviour
     {
         isGameActive = false;
         Debug.Log("Время вышло! Урок окончен, ты не успел собрать шпаргалки.");
-
+        if (LevelBridgeManager.instance != null)
+        {
+            LevelBridgeManager.instance.finishLevel(false);
+        }
+        else
+        {
+            SceneManager.LoadScene("HubScene");
+        }
     }
 
     public void StopTimer()

@@ -11,6 +11,11 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        if (LevelBridgeManager.instance != null)
+        {
+            difficulty = LevelBridgeManager.instance.economyGrade + 1;
+        }
+
         GenerateLevel();
     }
 

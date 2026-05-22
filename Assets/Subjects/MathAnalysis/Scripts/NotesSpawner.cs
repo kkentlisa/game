@@ -82,9 +82,9 @@ public class NotesSpawner : MonoBehaviour
     void WinGame()
     {
         Debug.Log("<color=green>онаедю!</color>");
-        Application.Quit();
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
+        if (LevelBridgeManager.instance != null)
+        {
+            LevelBridgeManager.instance.finishLevel(true);
+        }
     }
 }
