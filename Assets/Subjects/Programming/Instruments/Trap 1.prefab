@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2009098148793474997}
   - component: {fileID: 2230515692420521264}
   - component: {fileID: 5574346943245071979}
-  - component: {fileID: 229690455584868939}
   m_Layer: 0
   m_Name: Trap 1
   m_TagString: Untagged
@@ -152,15 +151,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5849ddef397ae485b898f8f68ec93b65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Trap
---- !u!114 &229690455584868939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5422202621964845487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59a7203aee82f45a284c5993c17aef0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TrapTrigger

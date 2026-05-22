@@ -7,7 +7,6 @@ public class Trap : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameManager.Instance.TakeDamage();
-            Destroy(gameObject);
         }
     }
 }
