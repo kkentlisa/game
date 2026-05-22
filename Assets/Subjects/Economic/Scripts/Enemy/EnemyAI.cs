@@ -11,9 +11,10 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float roamingTimerMax = 2f;
 
     [SerializeField] private float chasingDistance = 10f;
-    [SerializeField] private float chasingSpeedMultiplier = 1.5f;
+    [SerializeField] private float chasingSpeedMultiplier = 2f;
 
     [SerializeField] private float attackingDistance = 2f;
+    [SerializeField] private float attackingExitDistance = 2.8f;
     [SerializeField] private float attackRate = 2f;
     private float nextAttackTime = 0f;
 
@@ -25,6 +26,9 @@ public class EnemyAI : MonoBehaviour
 
     private float roamingSpeed;
     private float chasingSpeed;
+
+    private float targetSearchTimer = 0f;
+    private float nextTargetSearchInterval = 0.5f;
 
     private float nextCheckDirectionTime = 0f;
     private float checkDirectionDuration = 0.1f;
@@ -63,6 +67,9 @@ public class EnemyAI : MonoBehaviour
     private float stuckCheckInterval = 1f;
     private float stuckThreshold = 0.2f;
 
+    private float breakingTimeOutTimer = 0f;
+    [SerializeField] private float breakingTimeOut = 3f;
+
     private enum State
     {
         Idle,
@@ -86,11 +93,6 @@ public class EnemyAI : MonoBehaviour
 
         HitDetector hitDetector = GetComponentInChildren<HitDetector>(true);
         if (hitDetector != null) hitDetector.ownerName = enemyName;
-    }
-
-    private void Start()
-    {
-        ScoreManager.Instance.AddScore(enemyName, 0);
     }
 
     private void Update()
@@ -149,12 +151,12 @@ public class EnemyAI : MonoBehaviour
 
         if (shouldTargetPlayer)
         {
-            State newState = State.Chasing;
+            State newState;
 
-            if (distanceToPlayer <= attackingDistance)
-            {
-                newState = State.Attacking;
-            }
+            if (currentState == State.Attacking)
+                newState = distanceToPlayer > attackingExitDistance ? State.Chasing : State.Attacking;
+            else
+                newState = distanceToPlayer <= attackingDistance ? State.Attacking : State.Chasing;
 
             if (newState != currentState)
             {
@@ -181,6 +183,10 @@ public class EnemyAI : MonoBehaviour
 
         if (currentState == State.Roaming)
         {
+            targetSearchTimer -= Time.deltaTime;
+            if (targetSearchTimer > 0f) return;
+            targetSearchTimer = nextTargetSearchInterval;
+            
             CoinsPickup coin = FindNearestCoin();
             if (coin != null)
             {
@@ -199,11 +205,103 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    private void EscapeFrom(Vector3 problemPosition)
+    {
+        navMeshAgent.speed = roamingSpeed;
+        currentState = State.Roaming;
+        roamingTimer = roamingTimerMax;
+
+        Vector3 escapeDir = (transform.position - problemPosition).normalized;
+        if (escapeDir == Vector3.zero) escapeDir = Utils.GetRandomDir();
+
+        Vector3 escapeTarget = transform.position + escapeDir * roamingDistanceMax;
+        navMeshAgent.SetDestination(escapeTarget);
+    }
+
     private void EnterRoaming()
     {
         navMeshAgent.speed = roamingSpeed;
         roamingTimer = 0f;
         currentState = State.Roaming;
+    }
+
+    private void Roaming()
+    {
+        startingPosition = transform.position;
+        roamPosition = GetRandomPosition();
+        navMeshAgent.SetDestination(roamPosition);
+    }
+
+    private void ChasingTarget()
+    {
+        navMeshAgent.SetDestination(Player.Instance.transform.position);
+    }
+
+    private void AttackingTarget()
+    {
+        if (Time.time > nextAttackTime)
+        {
+            OnEnemyAttack?.Invoke(this, EventArgs.Empty);
+
+            nextAttackTime = Time.time + attackRate;
+        }
+    }
+
+    private void MovingToFurniture()
+    {
+        if (targetFurniture == null || targetFurniture.isBroken)
+        {
+            targetFurniture = null;
+            EnterRoaming();
+            return;
+        }
+
+        navMeshAgent.SetDestination(targetFurniture.transform.position);
+
+        if (Vector3.Distance(transform.position, targetFurniture.transform.position) <= furnitureAttackingDistance)
+        {
+            navMeshAgent.ResetPath();
+            breakingTimeOutTimer = breakingTimeOut;
+            currentState = State.BreakingFurniture;
+        }
+    }
+
+    private void BreakingFurniture()
+    {
+        if (targetFurniture == null || targetFurniture.isBroken)
+        {
+            targetFurniture = null;
+            EnterRoaming();
+            return;
+        }
+
+        breakingTimeOutTimer -= Time.deltaTime;
+        if (breakingTimeOutTimer <= 0f)
+        {
+            Vector3 problemPosition = targetFurniture.transform.position;
+            targetFurniture = null;
+            EscapeFrom(problemPosition);
+            return;
+        }
+
+
+        if (Time.time >= nextFurnitureAttackTime)
+        {
+            OnEnemyAttack?.Invoke(this, EventArgs.Empty);
+            nextFurnitureAttackTime = Time.time + furnitureAttackRate;
+            breakingTimeOutTimer = breakingTimeOut;
+        }
+    }
+
+    private void CollectingCoin()
+    {
+        if (targetCoin == null)
+        {
+            EnterRoaming();
+            return;
+        }
+
+        navMeshAgent.SetDestination(targetCoin.transform.position);
     }
 
     private bool PlayerIsRicher()
@@ -251,16 +349,6 @@ public class EnemyAI : MonoBehaviour
         return nearest;
     }
 
-    private void AttackingTarget()
-    {
-        if (Time.time > nextAttackTime)
-        {
-            OnEnemyAttack?.Invoke(this, EventArgs.Empty);
-
-            nextAttackTime = Time.time + attackRate;
-        }
-    }
-
     private void MovementDirectionHandler()
     {
         if (Time.time > nextCheckDirectionTime)
@@ -282,28 +370,6 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private void ChasingTarget()
-    {
-        navMeshAgent.SetDestination(Player.Instance.transform.position);
-    }
-
-    public float GetRoamingAnimationSpeed()
-    {
-        return navMeshAgent.speed / roamingSpeed;
-    }
-
-    private void Roaming()
-    {
-        startingPosition = transform.position;
-        roamPosition = GetRandomPosition();
-        navMeshAgent.SetDestination(roamPosition);
-    }
-
-    private Vector3 GetRandomPosition()
-    {
-        return startingPosition + Utils.GetRandomDir() * UnityEngine.Random.Range(roamingDistanceMin, roamingDistanceMax);
-    }
-
     private void ChangeFacingDirection(Vector3 sourcePosition, Vector3 targetPosition)
     {
         if (sourcePosition.x > targetPosition.x)
@@ -316,49 +382,46 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private void MovingToFurniture()
+
+    public float GetRoamingAnimationSpeed()
     {
-        if (targetFurniture == null || targetFurniture.isBroken)
-        {
-            targetFurniture = null;
-            EnterRoaming();
-            return;
-        }
-
-        navMeshAgent.SetDestination(targetFurniture.transform.position);
-
-        if (Vector3.Distance(transform.position, targetFurniture.transform.position) <= furnitureAttackingDistance)
-        {
-            navMeshAgent.ResetPath();
-            currentState = State.BreakingFurniture;
-        }
+        return navMeshAgent.speed / roamingSpeed;
     }
 
-    private void BreakingFurniture()
+    private Vector3 GetRandomPosition()
     {
-        if (targetFurniture == null || targetFurniture.isBroken)
-        {
-            targetFurniture = null;
-            EnterRoaming();
-            return;
-        }
-
-        if (Time.time >= nextFurnitureAttackTime)
-        {
-            OnEnemyAttack?.Invoke(this, EventArgs.Empty);
-            nextFurnitureAttackTime = Time.time + furnitureAttackRate;
-        }
+        return startingPosition + Utils.GetRandomDir() * UnityEngine.Random.Range(roamingDistanceMin, roamingDistanceMax);
     }
 
-    private void CollectingCoin()
+    private void StuckHandler()
     {
-        if (targetCoin == null)
-        {
-            EnterRoaming();
-            return;
-        }
+        if (!IsRunning) return;
+        if (currentState == State.Attacking) return;
 
-        navMeshAgent.SetDestination(targetCoin.transform.position);
+        stuckCheckTimer -= Time.deltaTime;
+        if (stuckCheckTimer > 0f) return;
+
+        stuckCheckTimer = stuckCheckInterval;
+
+        float movedDistance = Vector3.Distance(transform.position, stuckCheckPosition);
+
+        if (movedDistance < stuckThreshold)
+        {
+            if (currentState == State.MovingToFurniture && targetFurniture != null)
+            {
+                Vector3 problemPos = targetFurniture.transform.position;
+                targetFurniture = null;
+                EscapeFrom(problemPos);
+            }
+            else
+            {
+                targetFurniture = null;
+                targetCoin = null;
+                navMeshAgent.ResetPath();
+                EnterRoaming();
+            }
+        }
+        stuckCheckPosition = transform.position;
     }
 
     public void OnCoinCollected()
@@ -372,27 +435,5 @@ public class EnemyAI : MonoBehaviour
         targetFurniture = null;
         targetCoin = null;
         EnterRoaming();
-    }
-
-    private void StuckHandler()
-    {
-        if (!IsRunning) return;
-        if (currentState == State.Attacking || currentState == State.BreakingFurniture) return;
-
-        stuckCheckTimer -= Time.deltaTime;
-        if (stuckCheckTimer > 0f) return;
-
-        stuckCheckTimer = stuckCheckInterval;
-
-        float movedDistance = Vector3.Distance(transform.position, stuckCheckPosition);
-
-        if (movedDistance < stuckThreshold)
-        {
-            targetFurniture = null;
-            targetCoin = null;
-            navMeshAgent.ResetPath();
-            EnterRoaming();
-        }
-        stuckCheckPosition = transform.position;
     }
 }
