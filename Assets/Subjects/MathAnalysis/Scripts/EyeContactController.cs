@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro; // Обязательно для работы с TextMeshPro
-
+using UnityEngine.SceneManagement;
 public class EyeContactController : MonoBehaviour
 {
     [Header("Ссылки на объекты игры")]
@@ -139,10 +139,9 @@ public class EyeContactController : MonoBehaviour
     void TriggerEyeContactGameOver()
     {
         Debug.LogError("6 секунд истекли! Выход.");
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit(); 
-#endif
+        if (LevelBridgeManager.instance != null)
+            LevelBridgeManager.instance.finishLevel(false);
+        else
+            SceneManager.LoadScene("HubScene");
     }
 }

@@ -19,6 +19,12 @@ public class ClickableGradebook : MonoBehaviour
         }
     }
 
+    void OnEnable()
+    {
+        if (LevelBridgeManager.instance != null && LevelBridgeManager.instance.isAuthorized)
+            isActive = true;
+    }
+
     public void CloseGradebook()
     {
         gradebookUI.SetActive(false);
