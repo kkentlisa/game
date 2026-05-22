@@ -14,36 +14,36 @@ public class GameManager : MonoBehaviour
     [Header("Параметры Здоровья")]
     public float maxHealth = 500f;
     private float currentHealth;
-    
+
     [Header("UI Элементы")]
-    public Slider healthSlider;     
-    public GameObject gameOverPanel; 
-    public GameObject victoryPanel;  
+    public Slider healthSlider;
+    public GameObject gameOverPanel;
+    public GameObject victoryPanel;
 
     [Header("Объекты на Сцене")]
     public GameObject firewallBarrier;
-    
+
     [Header("Панели Терминалов")]
-    public GameObject mainTerminalPanel; 
-    public GameObject selectionTaskPanel; 
-    public GameObject sortingTaskPanel;   
-    private GameObject activeTerminal; 
-    
+    public GameObject mainTerminalPanel;
+    public GameObject selectionTaskPanel;
+    public GameObject sortingTaskPanel;
+    private GameObject activeTerminal;
+
     [Header("Прогресс Терминалов")]
-    public int totalTerminals = 3;      
+    public int totalTerminals = 3;
     private int repairedTerminalsCount = 0;
 
     private float timeSinceLastDamage = 0f;
-    
+
     [Header("Ссылки на Тексты UI Терминалов")]
-    public TMPro.TMP_Text selectionQuestionText;   
-    public TMPro.TMP_Text selectionCorrectBtnText;  
-    public TMPro.TMP_Text selectionWrongBtnText; 
-    
-    public TMPro.TMP_Text sortingQuestionText;     
+    public TMPro.TMP_Text selectionQuestionText;
+    public TMPro.TMP_Text selectionCorrectBtnText;
+    public TMPro.TMP_Text selectionWrongBtnText;
+
+    public TMPro.TMP_Text sortingQuestionText;
 
     private TerminalData currentTerminalData;
-    
+
     void Awake()
     {
         Instance = this;
@@ -51,6 +51,14 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        if (LevelBridgeManager.instance != null)
+        {
+            int grade = LevelBridgeManager.instance.programmingGrade;
+            if (grade == 2) baseDifficulty = LevelDifficulty.Easy;
+            else if (grade == 3) baseDifficulty = LevelDifficulty.Medium;
+            else if (grade == 4) baseDifficulty = LevelDifficulty.Hard;
+        }
+
         currentHealth = maxHealth;
         if (healthSlider != null)
         {
@@ -60,7 +68,7 @@ public class GameManager : MonoBehaviour
 
         if (gameOverPanel != null) gameOverPanel.SetActive(false);
         if (victoryPanel != null) victoryPanel.SetActive(false);
-        if (firewallBarrier != null) firewallBarrier.SetActive(true); 
+        if (firewallBarrier != null) firewallBarrier.SetActive(true);
         if (mainTerminalPanel != null) mainTerminalPanel.SetActive(false);
     }
 
@@ -77,12 +85,12 @@ public class GameManager : MonoBehaviour
         if (baseDifficulty == LevelDifficulty.Easy)
         {
             targetDamage = 2f;
-            targetTickRate = 2.0f; 
+            targetTickRate = 2.0f;
 
-            if (currentHealth < 30f) 
+            if (currentHealth < 30f)
             {
-                targetDamage = 1f;    
-                targetTickRate = 2.5f; 
+                targetDamage = 1f;
+                targetTickRate = 2.5f;
             }
         }
         else if (baseDifficulty == LevelDifficulty.Medium)
@@ -92,7 +100,7 @@ public class GameManager : MonoBehaviour
 
             if (currentHealth < 25f)
             {
-                targetDamage = 2f; 
+                targetDamage = 2f;
                 targetTickRate = 1.8f;
             }
             else if (currentHealth > 80f && timeSinceLastDamage > 15f)
@@ -101,15 +109,15 @@ public class GameManager : MonoBehaviour
                 targetTickRate = 1.2f;
             }
         }
-        else 
+        else
         {
             targetDamage = 7f;
             targetTickRate = 1.0f;
 
             if (currentHealth > 70f && timeSinceLastDamage > 10f)
             {
-                targetDamage = 9f;     
-                targetTickRate = 0.7f;  
+                targetDamage = 9f;
+                targetTickRate = 0.7f;
             }
         }
 
@@ -141,12 +149,22 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         if (victoryPanel != null) victoryPanel.SetActive(true);
+
+        if (LevelBridgeManager.instance != null)
+        {
+            LevelBridgeManager.instance.finishLevel(true);
+        }
     }
 
     void GameOver()
     {
         Time.timeScale = 0f;
         if (gameOverPanel != null) gameOverPanel.SetActive(true);
+
+        if (LevelBridgeManager.instance != null)
+        {
+            LevelBridgeManager.instance.finishLevel(false);
+        }
     }
 
     public void RestartGame()
@@ -191,10 +209,10 @@ public class GameManager : MonoBehaviour
     {
         float penalty = baseDifficulty switch
         {
-            LevelDifficulty.Easy   => 10f,
+            LevelDifficulty.Easy => 10f,
             LevelDifficulty.Medium => 20f,
-            LevelDifficulty.Hard   => 30f,
-            _                      => 10f
+            LevelDifficulty.Hard => 30f,
+            _ => 10f
         };
         TakeDamage(penalty);
         CloseTerminal(false);
@@ -204,10 +222,10 @@ public class GameManager : MonoBehaviour
     {
         TMPro.TMP_InputField inputField = sortingTaskPanel.GetComponentInChildren<TMPro.TMP_InputField>();
         TaskInfo currentTask = currentTerminalData.GetTaskForCurrentDifficulty();
-        
+
         if (inputField != null && inputField.text == currentTask.correctAnswer)
         {
-            inputField.text = ""; 
+            inputField.text = "";
             CloseTerminal(true);
         }
         else
@@ -227,7 +245,7 @@ public class GameManager : MonoBehaviour
             TerminalRepaired();
         }
     }
-    
+
     public void TerminalRepaired()
     {
         repairedTerminalsCount++;
