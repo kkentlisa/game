@@ -7,11 +7,12 @@ TagManager:
   - Undefined
   - Destructible
   - Enemy
+  - Candy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Obstacles
   - Water
   - UI
   - CinemachineConfiner
