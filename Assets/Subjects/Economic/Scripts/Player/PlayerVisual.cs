@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerVisual : MonoBehaviour
@@ -8,15 +9,32 @@ public class PlayerVisual : MonoBehaviour
     public Animator hitAnimator;
     public SpriteRenderer hitSpriteRenderer;
 
+    private HitDetector hitDetector;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        hitDetector = GetComponentInChildren<HitDetector>(true);
+
+        if (hitDetector != null)
+        {
+            hitDetector.ownerName = "Player";
+        }
     }
 
     private void Start()
     {
         GameInput.Instance.OnAttack += GameInputOnAttack;
+    }
+
+    private void OnDestroy()
+    {
+        if (GameInput.Instance != null)
+        {
+            GameInput.Instance.OnAttack -= GameInputOnAttack;
+        }
     }
 
     private void GameInputOnAttack()

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8686207492331086903}
   - component: {fileID: 8060750201847028296}
   - component: {fileID: 6038253427948857968}
+  - component: {fileID: 7908215541040207693}
   m_Layer: 0
   m_Name: FlowerMiddle
   m_TagString: Destructible
@@ -159,3 +160,19 @@ MonoBehaviour:
   canBeDestroyed: 0
   isBroken: 0
   coinPrefab: {fileID: 7855744635746206623, guid: 0f49deaf3e5b70d48a155f41f912226d, type: 3}
+--- !u!114 &7908215541040207693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256031973667486299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa0352a4d56abd42ad2fc69deb72448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifierVolume
+  m_Size: {x: 0.9258237, y: 0.55943286, z: 4}
+  m_Center: {x: -0.019555554, y: 0.11607677, z: 0}
+  m_Area: 1
+  m_AffectedAgents: ffffffff

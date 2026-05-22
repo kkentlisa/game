@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8677735245905510740}
   - component: {fileID: 9093874431462560139}
   - component: {fileID: 4268702202338411355}
+  - component: {fileID: 2860363974138834720}
   m_Layer: 0
   m_Name: Bench
   m_TagString: Destructible
@@ -159,3 +160,19 @@ MonoBehaviour:
   canBeDestroyed: 0
   isBroken: 0
   coinPrefab: {fileID: 7855744635746206623, guid: 0f49deaf3e5b70d48a155f41f912226d, type: 3}
+--- !u!114 &2860363974138834720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5075410228215607423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa0352a4d56abd42ad2fc69deb72448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifierVolume
+  m_Size: {x: 2.1087992, y: 0.8165954, z: 4}
+  m_Center: {x: 0.020291686, y: 0.35471866, z: 0}
+  m_Area: 1
+  m_AffectedAgents: ffffffff

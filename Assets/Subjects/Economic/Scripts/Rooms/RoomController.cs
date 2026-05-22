@@ -8,8 +8,11 @@ public class RoomController : MonoBehaviour
 
     private GameObject lockedDoorVisual;
 
+    [SerializeField] private GameObject doorNavBlocker;
+
     public bool isOpen = false;
     public bool isLightOn = false;
+
 
     private void Awake()
     {
@@ -35,6 +38,11 @@ public class RoomController : MonoBehaviour
             {
                 lockedDoorVisual.SetActive(!isOpen);
             }
+        }
+
+        if (doorNavBlocker != null)
+        {
+            doorNavBlocker.SetActive(!isOpen);
         }
 
         if (roomLight != null)

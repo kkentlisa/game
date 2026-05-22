@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.Cinemachine;
 using UnityEngine;
 
 public class CoinsPickup : MonoBehaviour
@@ -14,7 +13,7 @@ public class CoinsPickup : MonoBehaviour
         StartCoroutine(LifeTimeTimer());
     }
 
-        private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (collected) return;
 
@@ -22,6 +21,20 @@ public class CoinsPickup : MonoBehaviour
         {
             collected = true;
             ScoreManager.Instance.AddScore("Player", value);
+            Destroy(gameObject);
+            return;
+            
+        }
+
+        if (other.CompareTag("Enemy"))
+        {
+            EnemyAI enemy = other.GetComponentInParent<EnemyAI>();
+            if (enemy == null) return;
+
+            collected = true;
+            ScoreManager.Instance.AddScore(enemy.EnemyName, value);
+
+            enemy.OnCoinCollected();
             Destroy(gameObject);
         }
     }

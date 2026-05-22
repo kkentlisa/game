@@ -32,6 +32,24 @@ public class ScoreManager : MonoBehaviour
         OnScoreChanged?.Invoke();
     }
 
+    public int GetScore(string participant)
+    {
+        return scores.TryGetValue(participant, out int val) ? val : 0;
+    }
+
+    public int TransferScore(string from, string to, int amount)
+    {
+        int available = GetScore(from);
+        int actualTransfer = Mathf.Min(available, amount);
+
+        if (actualTransfer <= 0) return 0;
+
+        AddScore(from, -actualTransfer);
+        AddScore(to, actualTransfer);
+
+        return actualTransfer;
+    }
+
     public List<(string name, int score)> GetRanking()
     {
         var list = scores.Select(kv => (kv.Key, kv.Value)).ToList();
@@ -54,7 +72,11 @@ public class ScoreManager : MonoBehaviour
 
         for (int i = 0; i < ranking.Count; i++)
         {
-            leaderboardText.text += $"{i + 1}. {ranking[i].name}: {ranking[i].score}\n";
+            string line = $"{i + 1}. {ranking[i].name}: {ranking[i].score}";
+            if (ranking[i].name == "Player")
+                line = $"<color=yellow>{line}</color>";
+
+            leaderboardText.text += line + "\n";
         }
     }
 

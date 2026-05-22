@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5669249920444053702}
   - component: {fileID: 7612472611911434239}
   - component: {fileID: 6262985953454372726}
+  - component: {fileID: 840117884946831798}
   m_Layer: 0
   m_Name: ArmchairUp
   m_TagString: Destructible
@@ -159,3 +160,19 @@ MonoBehaviour:
   canBeDestroyed: 0
   isBroken: 0
   coinPrefab: {fileID: 7855744635746206623, guid: 0f49deaf3e5b70d48a155f41f912226d, type: 3}
+--- !u!114 &840117884946831798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4698179053953767557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa0352a4d56abd42ad2fc69deb72448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifierVolume
+  m_Size: {x: 2.2217255, y: 1.5316297, z: 4}
+  m_Center: {x: -0.011070251, y: 0.61261576, z: 0}
+  m_Area: 1
+  m_AffectedAgents: ffffffff

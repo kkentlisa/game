@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6334299149249469658}
   - component: {fileID: 8215067523582314867}
   - component: {fileID: 4966173772027368688}
+  - component: {fileID: 1731038979146509674}
   m_Layer: 0
   m_Name: PaddedStool
   m_TagString: Destructible
@@ -159,3 +160,19 @@ MonoBehaviour:
   canBeDestroyed: 0
   isBroken: 0
   coinPrefab: {fileID: 7855744635746206623, guid: 0f49deaf3e5b70d48a155f41f912226d, type: 3}
+--- !u!114 &1731038979146509674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7100020589463848394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa0352a4d56abd42ad2fc69deb72448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifierVolume
+  m_Size: {x: 1.224503, y: 0.5609275, z: 4}
+  m_Center: {x: 0.008411258, y: 0.21781403, z: 0}
+  m_Area: 1
+  m_AffectedAgents: ffffffff

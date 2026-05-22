@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5755940178849450308}
   - component: {fileID: 4413463110438520903}
   - component: {fileID: 4733341584291646146}
+  - component: {fileID: 8939811331052583746}
   m_Layer: 0
   m_Name: TableBrownHorizontal
   m_TagString: Destructible
@@ -159,3 +160,19 @@ MonoBehaviour:
   canBeDestroyed: 0
   isBroken: 0
   coinPrefab: {fileID: 7855744635746206623, guid: 0f49deaf3e5b70d48a155f41f912226d, type: 3}
+--- !u!114 &8939811331052583746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4040444243334234325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa0352a4d56abd42ad2fc69deb72448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifierVolume
+  m_Size: {x: 4, y: 2.067235, z: 4}
+  m_Center: {x: 0, y: 0.9067235, z: 0}
+  m_Area: 1
+  m_AffectedAgents: ffffffff

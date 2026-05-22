@@ -93,5 +93,7 @@ public class LevelManager : MonoBehaviour
                 itemScript.SetAsTarget(false);
             }
         }
+
+        NavMeshSurfaceManagement.Instance.RebakeNavMeshSurface();
     }
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7307790926383465602}
   - component: {fileID: 755336397640352498}
   - component: {fileID: 259486039272036208}
+  - component: {fileID: 8191311687282693641}
   m_Layer: 0
   m_Name: FlowerBig
   m_TagString: Destructible
@@ -159,3 +160,19 @@ MonoBehaviour:
   canBeDestroyed: 0
   isBroken: 0
   coinPrefab: {fileID: 7855744635746206623, guid: 0f49deaf3e5b70d48a155f41f912226d, type: 3}
+--- !u!114 &8191311687282693641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7390629349125875063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa0352a4d56abd42ad2fc69deb72448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifierVolume
+  m_Size: {x: 2.0796046, y: 1.3319993, z: 4}
+  m_Center: {x: 0.016460717, y: 0.4074211, z: 0}
+  m_Area: 1
+  m_AffectedAgents: ffffffff

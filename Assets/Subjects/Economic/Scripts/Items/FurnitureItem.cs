@@ -96,6 +96,7 @@ public class FurnitureItem : MonoBehaviour
             }
         }
         gameObject.SetActive(false);
+        NavMeshSurfaceManagement.Instance.RebakeNavMeshSurface();
     }
 
 
