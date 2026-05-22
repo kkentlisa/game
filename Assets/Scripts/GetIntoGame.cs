@@ -10,7 +10,7 @@ public class GetIntoGame : MonoBehaviour
 
     public void LoadProgrammingGameScene()
     {
-        SceneManager.LoadScene("ProgrammingGameScene");
+        SceneManager.LoadScene("ProgrammingScene");
     }
 
     public void LoadEconomyGameScene()
