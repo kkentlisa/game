@@ -88,27 +88,22 @@ public class NoteInteraction : MonoBehaviour
     {
         if (spawner == null) spawner = Object.FindFirstObjectByType<NotesSpawner>();
 
-        // 1. Проигрываем звук шуршания бумаги
         if (audioSource != null && collectSound != null)
         {
             audioSource.PlayOneShot(collectSound);
         }
 
-        // ─── СВЯЗЬ С НОВЫМ ЭКВАЛАЙЗЕРОМ ЗВУКА ───
         if (SoundNoiseController.Instance != null)
         {
             SoundNoiseController.Instance.AddNoise();
         }
-        // ────────────────────────────────────────
 
-        // 2. Оповещаем спавнер о сборке
         if (spawner != null)
         {
             Debug.Log("Записка собрана мышкой!");
             spawner.OnNoteCollected();
         }
 
-        // 3. Выключаем визуал и коллайдер
         if (sr != null) sr.enabled = false;
 
         Collider2D col = GetComponent<Collider2D>();

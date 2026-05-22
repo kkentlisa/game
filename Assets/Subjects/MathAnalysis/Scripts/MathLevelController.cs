@@ -47,11 +47,11 @@ public class MathLevelController : MonoBehaviour
                 SetupGrade3();
                 break;
             case Difficulty.Grade4:
-                notesToCollect = 8;
+                notesToCollect = 7;
                 SetupGrade4();
                 break;
             case Difficulty.Grade5:
-                notesToCollect = 12;
+                notesToCollect = 10;
                 SetupGrade5();
                 break;
         }

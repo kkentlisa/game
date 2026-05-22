@@ -2523,7 +2523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 981009135a695694d939c34482a4e758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  currentDifficulty: 1
+  currentDifficulty: 0
   notesToCollect: 0
   cameraScript: {fileID: 179788067}
   bgRenderer: {fileID: 1479134809}
@@ -7124,7 +7124,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1157482793
   m_SortingLayer: 1
-  m_SortingOrder: 170
+  m_SortingOrder: 200
   m_MaskInteraction: 0
   m_Sprite: {fileID: 618964750, guid: 5cf43bca8a252b54297cff50a82f28ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

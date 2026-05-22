@@ -55,7 +55,6 @@ public class NotesSpawner : MonoBehaviour
 
                 Debug.Log($"<color=cyan>Спавнер: Активировал {allNoteLocations[locationIndex].name} (Индекс: {locationIndex})</color>");
 
-                // Передаем Учителю новую цель для патрулирования
                 if (teacherAI != null)
                 {
                     teacherAI.SetTargetNote(allNoteLocations[locationIndex].transform);
