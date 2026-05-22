@@ -57,10 +57,6 @@ public class GameManager : MonoBehaviour
             healthSlider.maxValue = maxHealth;
             healthSlider.value = maxHealth;
         }
-        else
-        {
-            Debug.LogWarning("GameManager: Health Slider не назначен или не найден!");
-        }
 
         if (gameOverPanel != null) gameOverPanel.SetActive(false);
         if (victoryPanel != null) victoryPanel.SetActive(false);
@@ -136,8 +132,6 @@ public class GameManager : MonoBehaviour
             healthSlider.value = currentHealth;
         }
 
-        Debug.Log($"Получен урон: {damage}. Текущее здоровье: {currentHealth}");
-
         if (currentHealth <= 0)
         {
             GameOver();
@@ -163,9 +157,9 @@ public class GameManager : MonoBehaviour
     public void OpenTerminalTask(GameObject terminal, TerminalData data)
     {
         activeTerminal = terminal;
-        currentTerminalData = data; 
-        Time.timeScale = 0f; 
-    
+        currentTerminalData = data;
+        Time.timeScale = 0f;
+
         if (mainTerminalPanel != null) mainTerminalPanel.SetActive(true);
 
         TaskInfo currentTask = currentTerminalData.GetTaskForCurrentDifficulty();
@@ -202,7 +196,6 @@ public class GameManager : MonoBehaviour
             LevelDifficulty.Hard   => 30f,
             _                      => 10f
         };
-        Debug.Log($"Неверно! Сложность: {baseDifficulty}, урон: {penalty}");
         TakeDamage(penalty);
         CloseTerminal(false);
     }
@@ -226,28 +219,23 @@ public class GameManager : MonoBehaviour
     public void CloseTerminal(bool isSuccess)
     {
         if (mainTerminalPanel != null) mainTerminalPanel.SetActive(false);
-        Time.timeScale = 1f; 
+        Time.timeScale = 1f;
 
         if (isSuccess && activeTerminal != null)
         {
-            Destroy(activeTerminal); 
-            TerminalRepaired(); 
+            Destroy(activeTerminal);
+            TerminalRepaired();
         }
     }
     
     public void TerminalRepaired()
     {
         repairedTerminalsCount++;
-        Debug.Log($"Терминал успешно взломан! Прогресс: {repairedTerminalsCount}/{totalTerminals}");
 
         if (repairedTerminalsCount >= totalTerminals)
         {
-            Debug.Log("Все терминалы взломаны! Блокировка снята, беги к выходу!");
-        
             if (firewallBarrier != null)
-            {
-                firewallBarrier.SetActive(false); 
-            }
+                firewallBarrier.SetActive(false);
         }
     }
 }

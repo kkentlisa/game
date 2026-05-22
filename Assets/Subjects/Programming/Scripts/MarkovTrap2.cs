@@ -5,7 +5,6 @@ public class MarkovTrapAI2 : MonoBehaviour
 {
     public Transform player;
     public GameObject trapPrefab;
-    public float tickRate = 1.5f; 
     public float cellSize = 0.1f;
 
     private Vector2Int lastCell;
