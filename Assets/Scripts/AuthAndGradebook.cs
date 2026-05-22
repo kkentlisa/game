@@ -12,7 +12,6 @@ public class AuthAndGradebook : MonoBehaviour
 
     void Start()
     {
-        authPanel.SetActive(false);
         if (gradebookUI != null) gradebookUI.SetActive(false);
         if (gradebookClickable != null) gradebookClickable.SetActive(false);
 
@@ -30,7 +29,7 @@ public class AuthAndGradebook : MonoBehaviour
         }
     }
 
-    void Authorize()
+    public void Authorize()
     {
         if (string.IsNullOrEmpty(nameInput.text))
         {
@@ -40,6 +39,11 @@ public class AuthAndGradebook : MonoBehaviour
 
         PlayerPrefs.SetString("PlayerName", nameInput.text);
         PlayerPrefs.Save();
+
+        if (LevelBridgeManager.instance != null)
+        {
+            LevelBridgeManager.instance.playerName = nameInput.text;
+        }
 
         if (authPanel != null)
             authPanel.SetActive(false);

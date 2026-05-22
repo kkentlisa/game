@@ -62,11 +62,18 @@ public class GameSessionManager : MonoBehaviour
         if (playerRank == 1)
         {
             Debug.Log("<color=green>ÏÎÁÅÄÀ!</color>");
-            UpdateDifficultyOnWin();
+            if (LevelBridgeManager.instance != null)
+            {
+                LevelBridgeManager.instance.finishLevel(true);
+            }
         }
         else
         {
             Debug.Log($"<color=red>ÏÎĞÀÆÅÍÈÅ!</color> Èãğîê çàíÿë {playerRank} ìåñòî");
+            if (LevelBridgeManager.instance != null)
+            {
+                LevelBridgeManager.instance.finishLevel(false);
+            }
         }
 
         Time.timeScale = 0f;

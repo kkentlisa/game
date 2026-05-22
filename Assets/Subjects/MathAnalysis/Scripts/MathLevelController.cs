@@ -24,6 +24,13 @@ public class MathLevelController : MonoBehaviour
 
     void Start()
     {
+        if (LevelBridgeManager.instance != null)
+        {
+            int grade = LevelBridgeManager.instance.mathGrade;
+            if (grade == 2) currentDifficulty = Difficulty.Grade3;
+            else if (grade == 3) currentDifficulty = Difficulty.Grade4;
+            else if (grade == 4) currentDifficulty = Difficulty.Grade5;
+        }
         ApplyDifficultySettings();
     }
 
