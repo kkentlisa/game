@@ -9,7 +9,10 @@ public class ClickableBlank : MonoBehaviour
         if (authPanel != null)
         {
             authPanel.SetActive(true);
-            authManager?.LoadSavedName();
+            if (authManager != null)
+            {
+                authManager.LoadSavedName();
+            }
         }
     }
 }

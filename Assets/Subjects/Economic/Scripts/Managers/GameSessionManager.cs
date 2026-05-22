@@ -74,7 +74,6 @@ public class GameSessionManager : MonoBehaviour
             }
         }
 
-        Time.timeScale = 0f;
     }
 
     private void OnDestroy()
