@@ -14,7 +14,7 @@ public class MazeGenerator : MonoBehaviour
     public GameObject wallPrefab; 
     private List<GameObject> spawnedWalls = new List<GameObject>();
     private MazeCell[,] maze;
-
+    
     private class MazeCell
     {
         public int x, y;
