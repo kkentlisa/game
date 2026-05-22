@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/HubScene.unity
+    guid: a161bbb5501f5724c9986dd205db1af7
   - enabled: 1
     path: Assets/Subjects/Economic/Scenes/EconimicGameScene.unity
     guid: f417d9ca6f1135a408e026d178a19318
@@ -15,7 +15,10 @@ EditorBuildSettings:
     path: Assets/Subjects/MathAnalysis/Scenes/MathAnalysisGameScene.unity
     guid: 37b0f140bad59d9498b2e31346cef26e
   - enabled: 1
-    path: Assets/Subjects/Programming/Scenes/Level1.unity
-    guid: a076f0061751a844c97a70cad0a79e8d
+    path: Assets/Subjects/Programming/Scenes/ProgrammingScene.unity
+    guid: 0b9ed9697d05f4713adc19ab46356baa
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
