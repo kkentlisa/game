@@ -147,9 +147,9 @@ public class SleepMechanicController : MonoBehaviour
         UpdateVignetteAlpha(1f);
         if (warningSignRenderer != null) warningSignRenderer.color = new Color(1f, 1f, 1f, 0f);
 
-        Application.Quit();
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
+        if (LevelBridgeManager.instance != null)
+            LevelBridgeManager.instance.finishLevel(false);
+        else
+            SceneManager.LoadScene("HubScene");
     }
 }

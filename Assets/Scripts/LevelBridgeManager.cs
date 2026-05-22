@@ -16,6 +16,13 @@ public class LevelBridgeManager : MonoBehaviour
     [HideInInspector]
     public string currentActiveSubject;
 
+    public bool isAuthorized = false;
+
+    void Start()
+    {
+        BindButtons();
+    }
+
     void Awake()
     {
         if (instance == null)
@@ -44,6 +51,34 @@ public class LevelBridgeManager : MonoBehaviour
         if (scene.name == "HubScene")
         {
             updateUiDisplays();
+            BindButtons();
+        }
+    }
+
+    void BindButtons()
+    {
+        var mathBtn = GameObject.Find("MathButton")?.GetComponent<UnityEngine.UI.Button>();
+        if (mathBtn != null)
+        {
+            mathBtn.onClick.RemoveAllListeners();
+            mathBtn.onClick.AddListener(() => clickSubject("Math"));
+            Debug.Log("MathButton привязана");
+        }
+
+        var progBtn = GameObject.Find("ProgrammingButton")?.GetComponent<UnityEngine.UI.Button>();
+        if (progBtn != null)
+        {
+            progBtn.onClick.RemoveAllListeners();
+            progBtn.onClick.AddListener(() => clickSubject("Programming"));
+            Debug.Log("ProgrammingButton привязана");
+        }
+
+        var econBtn = GameObject.Find("EconomyButton")?.GetComponent<UnityEngine.UI.Button>();
+        if (econBtn != null)
+        {
+            econBtn.onClick.RemoveAllListeners();
+            econBtn.onClick.AddListener(() => clickSubject("Economy"));
+            Debug.Log("EconomyButton привязана");
         }
     }
 
@@ -79,6 +114,8 @@ public class LevelBridgeManager : MonoBehaviour
 
             distortionValue += 0.25f;
             distortionValue = Mathf.Clamp01(distortionValue);
+
+            updateUiDisplays();
         }
 
         SceneManager.LoadScene("HubScene");

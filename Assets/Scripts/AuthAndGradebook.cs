@@ -29,6 +29,15 @@ public class AuthAndGradebook : MonoBehaviour
         }
     }
 
+    void OnEnable()
+    {
+        if (LevelBridgeManager.instance != null && LevelBridgeManager.instance.isAuthorized)
+        {
+            authPanel.SetActive(false);
+            if (gradebookClickable != null) gradebookClickable.SetActive(true);
+        }
+    }
+
     public void Authorize()
     {
         if (string.IsNullOrEmpty(nameInput.text))
@@ -40,7 +49,9 @@ public class AuthAndGradebook : MonoBehaviour
         PlayerPrefs.SetString("PlayerName", nameInput.text);
         PlayerPrefs.Save();
 
-        if (LevelBridgeManager.instance != null)
+        LevelBridgeManager.instance.isAuthorized = true;
+
+        if (LevelBridgeManager.instance != null && LevelBridgeManager.instance.isAuthorized)
         {
             LevelBridgeManager.instance.playerName = nameInput.text;
         }

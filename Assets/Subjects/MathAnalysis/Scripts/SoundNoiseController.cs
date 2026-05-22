@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SoundNoiseController : MonoBehaviour
 {
@@ -84,13 +85,9 @@ public class SoundNoiseController : MonoBehaviour
     {
         Debug.LogError("Шум на максимуме! Выход из игры.");
 
-#if UNITY_EDITOR
-        string runtimePlatform = "Редактор Unity";
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        // Если игра запущена как скомпилированный билд (.exe файл)
-        string runtimePlatform = "Скомпилированная игра";
-        Application.Quit();
-#endif
+        if (LevelBridgeManager.instance != null)
+            LevelBridgeManager.instance.finishLevel(false);
+        else
+            SceneManager.LoadScene("HubScene");
     }
 }
