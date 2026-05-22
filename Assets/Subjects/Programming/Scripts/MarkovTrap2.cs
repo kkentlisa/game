@@ -114,11 +114,5 @@ public class MarkovTrapAI2 : MonoBehaviour
     {
         return new Vector2Int(Mathf.RoundToInt(player.position.x / cellSize), Mathf.RoundToInt(player.position.y / cellSize));
     }
-
-    public void ResetMemory()
-    {
-        markovChain2ndOrder.Clear();
-        penultMove = "";
-        lastMove = "";
-    }
+    
 }
