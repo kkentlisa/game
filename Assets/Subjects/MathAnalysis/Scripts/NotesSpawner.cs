@@ -11,10 +11,14 @@ public class NotesSpawner : MonoBehaviour
     private int totalSpawnedCount = 0;
     private int goal;
 
+    private RandomWanderingAI teacherAI;
+
     void Start()
     {
         if (levelController == null)
             levelController = Object.FindFirstObjectByType<MathLevelController>();
+
+        teacherAI = Object.FindFirstObjectByType<RandomWanderingAI>();
 
         if (levelController != null)
         {
@@ -51,6 +55,12 @@ public class NotesSpawner : MonoBehaviour
 
                 Debug.Log($"<color=cyan>Спавнер: Активировал {allNoteLocations[locationIndex].name} (Индекс: {locationIndex})</color>");
 
+                // Передаем Учителю новую цель для патрулирования
+                if (teacherAI != null)
+                {
+                    teacherAI.SetTargetNote(allNoteLocations[locationIndex].transform);
+                }
+
                 NoteInteraction ni = allNoteLocations[locationIndex].GetComponent<NoteInteraction>();
                 if (ni != null) ni.spawner = this;
 
@@ -66,13 +76,18 @@ public class NotesSpawner : MonoBehaviour
         activeOnScreen--;
         Debug.Log("Спавнер: Получен сигнал сбора. Осталось на экране: " + activeOnScreen);
 
+        if (teacherAI != null)
+        {
+            teacherAI.ClearTargetNote();
+        }
+
         if (levelController != null)
         {
             levelController.notesToCollect--;
             if (levelController.notesToCollect <= 0)
             {
                 WinGame();
-                return; 
+                return;
             }
         }
 
