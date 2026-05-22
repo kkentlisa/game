@@ -61,7 +61,6 @@ public class GameSessionManager : MonoBehaviour
 
         if (playerRank == 1)
         {
-            Debug.Log("<color=green>ÏÎÁÅÄÀ!</color>");
             if (LevelBridgeManager.instance != null)
             {
                 LevelBridgeManager.instance.finishLevel(true);
@@ -69,28 +68,10 @@ public class GameSessionManager : MonoBehaviour
         }
         else
         {
-            Debug.Log($"<color=red>ÏÎĞÀÆÅÍÈÅ!</color> Èãğîê çàíÿë {playerRank} ìåñòî");
             if (LevelBridgeManager.instance != null)
             {
                 LevelBridgeManager.instance.finishLevel(false);
             }
-        }
-
-    }
-
-    private void UpdateDifficultyOnWin()
-    {
-        if (levelManager == null) return;
-
-        int currentDifficulty = levelManager.difficulty;
-
-        if (currentDifficulty == 3)
-        {
-            levelManager.difficulty = 4;
-        }
-        else if (currentDifficulty == 4)
-        {
-            levelManager.difficulty = 5;
         }
 
     }

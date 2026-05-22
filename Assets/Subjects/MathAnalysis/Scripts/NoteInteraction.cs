@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class NoteInteraction : MonoBehaviour
 {
@@ -8,16 +8,29 @@ public class NoteInteraction : MonoBehaviour
     private Vector3 originalScale;
     private bool isMouseOver = false;
     private Camera mainCam;
+    private AudioSource audioSource; 
 
-    [Header("��������� ���������")]
-    public GameObject outlineObject; 
+    [Header("Настройки подсветки")]
+    public GameObject outlineObject;
     public float scaleUpFactor = 1.1f;
+
+    [Header("Настройки звука")]
+    [Tooltip("Перетащи сюда аудио-файл шуршания бумаги")]
+    public AudioClip collectSound;
 
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         originalScale = transform.localScale;
         mainCam = Camera.main;
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        audioSource.playOnAwake = false;
 
         if (outlineObject != null) outlineObject.SetActive(false);
 
@@ -41,7 +54,6 @@ public class NoteInteraction : MonoBehaviour
 
         Vector3 mouseWorldPos = mainCam.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mouseWorldPos.x, mouseWorldPos.y);
-
 
         Collider2D hit = Physics2D.OverlapPoint(mousePos2D);
 
@@ -76,11 +88,29 @@ public class NoteInteraction : MonoBehaviour
     {
         if (spawner == null) spawner = Object.FindFirstObjectByType<NotesSpawner>();
 
+        if (audioSource != null && collectSound != null)
+        {
+            audioSource.PlayOneShot(collectSound);
+        }
+
+        if (SoundNoiseController.Instance != null)
+        {
+            SoundNoiseController.Instance.AddNoise();
+        }
+
         if (spawner != null)
         {
-            Debug.Log("������� ������� ������!");
+            Debug.Log("Записка собрана мышкой!");
             spawner.OnNoteCollected();
-            gameObject.SetActive(false);
         }
+
+        if (sr != null) sr.enabled = false;
+
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null) col.enabled = false;
+
+        if (outlineObject != null) outlineObject.SetActive(false);
+
+        this.enabled = false;
     }
 }

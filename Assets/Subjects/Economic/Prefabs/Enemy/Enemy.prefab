@@ -34,6 +34,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1494402799848557279}
   - {fileID: 4595425923489044802}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -50,7 +51,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 3
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -98,8 +99,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.018418722, y: 0.077439174}
-  m_Size: {x: 0.6174999, y: 0.29850724}
+  m_Offset: {x: -0.018418726, y: 0.05082216}
+  m_Size: {x: 0.6175, y: 0.24527943}
   m_Direction: 1
 --- !u!114 &3543546168229867424
 MonoBehaviour:
@@ -124,7 +125,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.44
-  m_Speed: 2.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -155,10 +156,12 @@ MonoBehaviour:
   chasingDistance: 4
   chasingSpeedMultiplier: 1.5
   attackingDistance: 2
+  attackingExitDistance: 2.8
   attackRate: 2
   enemyName: Student
   furnitureAttackRate: 0.8
   furnitureAttackingDistance: 1
+  breakingTimeOut: 3
 --- !u!1 &2581272749825469173
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,25 +324,33 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.09630528, y: 1.5064358}
-      - {x: 0.44532675, y: 1.2560558}
-      - {x: 0.99622864, y: 0.8206414}
-      - {x: 1.2337434, y: 0.13464572}
-      - {x: 1.1813943, y: -0.3070076}
-      - {x: 1.0106839, y: -0.7154616}
-      - {x: 0.6306305, y: -1.0945374}
-      - {x: 0.0041677654, y: -1.2689277}
-      - {x: -0.36628017, y: -1.422446}
-      - {x: 0.043390073, y: -1.5947992}
-      - {x: 0.41833982, y: -1.5115156}
-      - {x: 0.87461686, y: -1.3652335}
-      - {x: 1.349067, y: -0.78860235}
-      - {x: 1.5901271, y: -0.30395344}
-      - {x: 1.5793014, y: 0.084721655}
-      - {x: 1.5301588, y: 0.5767859}
-      - {x: 1.2543024, y: 0.96099365}
-      - {x: 0.9528797, y: 1.2304119}
-      - {x: 0.45753407, y: 1.4486666}
+    - - {x: 0.3803002, y: 1.986042}
+      - {x: -0.23513633, y: 2.1177268}
+      - {x: -0.65448046, y: 2.061198}
+      - {x: -1.0925708, y: 1.9476361}
+      - {x: -1.3936511, y: 1.4853407}
+      - {x: 0.24492246, y: 1.2138658}
+      - {x: 0.43004456, y: 1.0076679}
+      - {x: 0.67980295, y: 0.7046189}
+      - {x: 0.9067702, y: 0.14519288}
+      - {x: 0.90715885, y: -0.23317486}
+      - {x: 0.70480514, y: -0.5888921}
+      - {x: 0.2825623, y: -0.95741904}
+      - {x: -0.48101822, y: -1.0263344}
+      - {x: -1.2065984, y: -0.96752167}
+      - {x: -1.537055, y: -1.5912068}
+      - {x: -0.97446346, y: -1.9451374}
+      - {x: -0.14646477, y: -1.9323196}
+      - {x: 0.44998166, y: -1.9650587}
+      - {x: 0.9695444, y: -1.8082291}
+      - {x: 1.6760402, y: -1.3370726}
+      - {x: 2.0870614, y: -0.5934286}
+      - {x: 2.096408, y: -0.26176313}
+      - {x: 2.0750346, y: 0.23238716}
+      - {x: 1.7938467, y: 0.8826645}
+      - {x: 1.570728, y: 1.2141341}
+      - {x: 1.2798536, y: 1.4940999}
+      - {x: 0.98491013, y: 1.638522}
   m_UseDelaunayMesh: 1
 --- !u!114 &8756508187621871461
 MonoBehaviour:
@@ -486,3 +497,72 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyVisual
   enemyAI: {fileID: 8985787874710432495}
   hitAnimator: {fileID: 371927081345884775}
+--- !u!1 &7043812415791873657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1494402799848557279}
+  - component: {fileID: 4859189232885329482}
+  m_Layer: 0
+  m_Name: HurtBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1494402799848557279
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7043812415791873657}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2152525281091704298}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &4859189232885329482
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7043812415791873657}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.014194965, y: 0.61911786}
+  m_Size: {x: 0.52838993, y: 1.4580605}
+  m_Direction: 0

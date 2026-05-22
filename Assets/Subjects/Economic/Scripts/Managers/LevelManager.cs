@@ -6,6 +6,7 @@ using UnityEditorInternal;
 public class LevelManager : MonoBehaviour
 {
     public List<RoomController> allRooms = new List<RoomController>();
+    public List<GameObject> allEnemies = new List<GameObject>();
 
     public int difficulty = 3;
 
@@ -23,21 +24,25 @@ public class LevelManager : MonoBehaviour
     {
         int openRooms = 0;
         float itemsPercentage = 0f;
+        int activeEnemies = 0;
 
         if (difficulty == 3)
         {
             openRooms = 18;
             itemsPercentage = 0.7f;
+            activeEnemies = 3;
         }
         else if (difficulty == 4)
         {
             openRooms = 12;
             itemsPercentage = 0.5f;
+            activeEnemies = 4;
         }
         else if (difficulty == 5)
         {
             openRooms = 6;
             itemsPercentage = 0.3f;
+            activeEnemies = 5;
         }
 
         foreach (var room in allRooms)
@@ -96,6 +101,14 @@ public class LevelManager : MonoBehaviour
             else
             {
                 itemScript.SetAsTarget(false);
+            }
+        }
+
+        for (int i = 0; i < allEnemies.Count; i++)
+        {
+            if (allEnemies[i] != null)
+            {
+                allEnemies[i].SetActive(i < activeEnemies);
             }
         }
 

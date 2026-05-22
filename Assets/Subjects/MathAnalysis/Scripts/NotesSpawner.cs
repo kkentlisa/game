@@ -11,10 +11,14 @@ public class NotesSpawner : MonoBehaviour
     private int totalSpawnedCount = 0;
     private int goal;
 
+    private RandomWanderingAI teacherAI;
+
     void Start()
     {
         if (levelController == null)
             levelController = Object.FindFirstObjectByType<MathLevelController>();
+
+        teacherAI = Object.FindFirstObjectByType<RandomWanderingAI>();
 
         if (levelController != null)
         {
@@ -40,7 +44,7 @@ public class NotesSpawner : MonoBehaviour
 
     public void SpawnNextBatch()
     {
-        if (activeOnScreen < 3 && totalSpawnedCount < goal && availableIndices.Count > 0)
+        if (totalSpawnedCount < goal && activeOnScreen < 3 && availableIndices.Count > 0)
         {
             int randomIndex = Random.Range(0, availableIndices.Count);
             int locationIndex = availableIndices[randomIndex];
@@ -49,7 +53,8 @@ public class NotesSpawner : MonoBehaviour
             {
                 allNoteLocations[locationIndex].SetActive(true);
 
-                Debug.Log($"<color=cyan>Спавнер: Активировал {allNoteLocations[locationIndex].name} (Индекс: {locationIndex})</color>");
+                if (teacherAI != null)
+                    teacherAI.SetTargetNote(allNoteLocations[locationIndex].transform);
 
                 NoteInteraction ni = allNoteLocations[locationIndex].GetComponent<NoteInteraction>();
                 if (ni != null) ni.spawner = this;
@@ -59,12 +64,18 @@ public class NotesSpawner : MonoBehaviour
                 totalSpawnedCount++;
             }
         }
+        else if (activeOnScreen == 0 && totalSpawnedCount >= goal)
+        {
+            WinGame();
+        }
     }
 
     public void OnNoteCollected()
     {
         activeOnScreen--;
-        Debug.Log("Спавнер: Получен сигнал сбора. Осталось на экране: " + activeOnScreen);
+
+        if (teacherAI != null)
+            teacherAI.ClearTargetNote();
 
         if (levelController != null)
         {
@@ -72,7 +83,7 @@ public class NotesSpawner : MonoBehaviour
             if (levelController.notesToCollect <= 0)
             {
                 WinGame();
-                return; 
+                return;
             }
         }
 
