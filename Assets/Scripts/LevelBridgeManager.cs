@@ -55,7 +55,7 @@ public class LevelBridgeManager : MonoBehaviour
         }
     }
 
-    void BindButtons()
+    public void BindButtons()
     {
         var mathBtn = GameObject.Find("MathButton")?.GetComponent<UnityEngine.UI.Button>();
         if (mathBtn != null)
@@ -98,7 +98,7 @@ public class LevelBridgeManager : MonoBehaviour
         currentActiveSubject = subjectName;
 
         if (subjectName == "Math") SceneManager.LoadScene("MathAnalysisGameScene");
-        else if (subjectName == "Programming") SceneManager.LoadScene("ProgrammingGameScene");
+        else if (subjectName == "Programming") SceneManager.LoadScene("ProgrammingScene");
         else if (subjectName == "Economy") SceneManager.LoadScene("EconimicGameScene");
     }
 

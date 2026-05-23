@@ -16,6 +16,7 @@ public class ClickableGradebook : MonoBehaviour
         if (isActive && gradebookUI != null)
         {
             gradebookUI.SetActive(true);
+            LevelBridgeManager.instance?.BindButtons();
         }
     }
 

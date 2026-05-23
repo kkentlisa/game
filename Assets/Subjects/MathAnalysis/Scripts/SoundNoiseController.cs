@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class SoundNoiseController : MonoBehaviour
 {
@@ -40,6 +39,7 @@ public class SoundNoiseController : MonoBehaviour
         }
     }
 
+    // Постепенное снижение уровня шума со временем
     void Update()
     {
         if (currentNoise > 0f)
@@ -51,6 +51,7 @@ public class SoundNoiseController : MonoBehaviour
         }
     }
 
+    // Метод для добавления шума при взаимодействии с запиской
     public void AddNoise()
     {
         if (allSegments == null || allSegments.Length == 0) return;
@@ -68,6 +69,7 @@ public class SoundNoiseController : MonoBehaviour
         }
     }
 
+    // Обновление визуального отображения уровня шума на сетке
     void UpdateEqualizerVisual()
     {
         if (allSegments == null || allSegments.Length == 0) return;
@@ -85,9 +87,13 @@ public class SoundNoiseController : MonoBehaviour
     {
         Debug.LogError("Шум на максимуме! Выход из игры.");
 
-        if (LevelBridgeManager.instance != null)
-            LevelBridgeManager.instance.finishLevel(false);
-        else
-            SceneManager.LoadScene("HubScene");
+#if UNITY_EDITOR
+        string runtimePlatform = "Редактор Unity";
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        // Если игра запущена как скомпилированный билд (.exe файл)
+        string runtimePlatform = "Скомпилированная игра";
+        Application.Quit();
+#endif
     }
 }

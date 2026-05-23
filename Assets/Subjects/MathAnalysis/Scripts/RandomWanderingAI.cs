@@ -64,11 +64,11 @@ public class RandomWanderingAI : MonoBehaviour
 
     void Update()
     {
-        // 1. ЛОГИКА ПЕРСПЕКТИВЫ
+        // Псевдо-3D эффект: меняем размер учителя в зависимости от координаты Y
         float t = Mathf.InverseLerp(maxYPosition, minYPosition, transform.position.y);
         float currentScale = Mathf.Lerp(minScale, maxScale, t);
 
-        // 2. РАЗВОРOТ СПРАЙТА
+        // Определяем направление движения по X и разворачиваем спрайт в нужную сторону
         float directionSign = transform.localScale.x > 0 ? 1f : -1f;
         if (isMoving && targetNodeIndex != -1)
         {
@@ -78,19 +78,20 @@ public class RandomWanderingAI : MonoBehaviour
         }
         transform.localScale = new Vector3(currentScale * directionSign, currentScale, 1f);
 
-        // 3. АВТО-СОРТИРОВКА СЛОЕВ
+        // Устанавливаем сортировку спрайта в зависимости от Y позиции для правильного наложения
         if (spriteRenderer != null)
         {
             spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * -100f);
         }
 
-        // 4. АНИМАЦИЯ ХОДЬБЫ
+        // Управляем анимацией движения
         if (animator != null)
         {
             animator.SetBool("isMoving", isMoving);
         }
     }
 
+    // Основной корутин для навигации по сети дорог, выбора следующей точки и управления движением
     IEnumerator NavigateNetworkRoutine()
     {
         yield return new WaitForSeconds(0.5f);
@@ -129,6 +130,7 @@ public class RandomWanderingAI : MonoBehaviour
         }
     }
 
+    // Метод для выбора следующей точки на основе наличия активной записки и расстояния до нее
     int ChooseNextNode()
     {
         var currentNode = roadNetwork.allNodes[currentNodeIndex];
