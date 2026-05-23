@@ -33,6 +33,7 @@ public class SleepMechanicController : MonoBehaviour
         StartCoroutine(WakeUpRoutine());
     }
 
+    // Последовательность пробуждения с постепенным уменьшением эффекта сна
     IEnumerator WakeUpRoutine()
     {
         isHandlingState = true;
@@ -70,6 +71,7 @@ public class SleepMechanicController : MonoBehaviour
     {
         fallAsleepSpeed = newSpeed;
     }
+
 
     void Update()
     {
@@ -114,6 +116,7 @@ public class SleepMechanicController : MonoBehaviour
         StartCoroutine(FallAsleepSequence());
     }
 
+    // Последовательность засыпания с постепенным усилением эффекта сна и затем выходом из приложения
     IEnumerator FallAsleepSequence()
     {
         isHandlingState = true;
@@ -147,9 +150,9 @@ public class SleepMechanicController : MonoBehaviour
         UpdateVignetteAlpha(1f);
         if (warningSignRenderer != null) warningSignRenderer.color = new Color(1f, 1f, 1f, 0f);
 
-        if (LevelBridgeManager.instance != null)
-            LevelBridgeManager.instance.finishLevel(false);
-        else
-            SceneManager.LoadScene("HubScene");
+        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }
