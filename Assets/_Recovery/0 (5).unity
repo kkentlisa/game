@@ -366,7 +366,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &49847712
@@ -1262,7 +1262,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &352636559
@@ -2034,7 +2034,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -17.31961, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &482204232
@@ -2192,6 +2192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 548112601}
   - component: {fileID: 548112602}
+  - component: {fileID: 548112603}
   m_Layer: 5
   m_Name: LevelBridge
   m_TagString: Untagged
@@ -2237,6 +2238,22 @@ MonoBehaviour:
   distortionValue: 0
   currentActiveSubject: 
   isAuthorized: 0
+--- !u!114 &548112603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548112599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cd57b159b6e2fc438b03da6a98c8c60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EndManager
+  badEndingPanel: {fileID: 1593016141}
+  goodEndingPanel: {fileID: 1066651319}
+  missingStudentText: {fileID: 138019569}
+  missingStudentPhoto: {fileID: 1351101901}
 --- !u!1 &561468060
 GameObject:
   m_ObjectHideFlags: 0
@@ -3692,7 +3709,6 @@ GameObject:
   - component: {fileID: 1253455031}
   - component: {fileID: 1253455030}
   - component: {fileID: 1253455029}
-  - component: {fileID: 1253455033}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3788,22 +3804,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1253455033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253455028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cd57b159b6e2fc438b03da6a98c8c60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EndManager
-  badEndingPanel: {fileID: 1593016141}
-  goodEndingPanel: {fileID: 1066651319}
-  missingStudentText: {fileID: 138019569}
-  missingStudentPhoto: {fileID: 1351101901}
 --- !u!1 &1269083924
 GameObject:
   m_ObjectHideFlags: 0
@@ -4550,7 +4550,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1514322612
@@ -4789,7 +4789,6 @@ GameObject:
   - component: {fileID: 1562199515}
   - component: {fileID: 1562199514}
   - component: {fileID: 1562199513}
-  - component: {fileID: 1562199516}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -4861,7 +4860,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 548112603}
         m_TargetAssemblyTypeName: EndManager, Assembly-CSharp
         m_MethodName: CloseGradebookForever
         m_Mode: 1
@@ -4911,19 +4910,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1562199511}
   m_CullTransparentMesh: 1
---- !u!114 &1562199516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1562199511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1643cb939b6837e4483facbdae4214a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CloseButtonBinder
-  button: {fileID: 0}
 --- !u!1 &1562517763
 GameObject:
   m_ObjectHideFlags: 0
@@ -5187,7 +5173,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1575411338
@@ -5699,7 +5685,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1663133731
@@ -6360,7 +6346,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1925886684
@@ -6434,14 +6420,13 @@ GameObject:
   - component: {fileID: 2015756681}
   - component: {fileID: 2015756680}
   - component: {fileID: 2015756679}
-  - component: {fileID: 2015756682}
   m_Layer: 5
   m_Name: GradeBookPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2015756679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6507,21 +6492,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2015756682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2015756678}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b69347a17b451e14c8e151c7ebd49398, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GradebookUIUpdater
-  mathText: {fileID: 1575411337}
-  programmingText: {fileID: 1663133730}
-  economyText: {fileID: 2138054522}
 --- !u!1 &2138054520
 GameObject:
   m_ObjectHideFlags: 0
@@ -6648,7 +6618,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &2138054523

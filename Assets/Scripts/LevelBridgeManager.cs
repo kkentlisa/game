@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class LevelBridgeManager : MonoBehaviour
 {
@@ -13,15 +12,8 @@ public class LevelBridgeManager : MonoBehaviour
     public string playerName = "";
     [Range(0f, 1f)] public float distortionValue = 0f;
 
-    [HideInInspector]
-    public string currentActiveSubject;
-
+    [HideInInspector] public string currentActiveSubject;
     public bool isAuthorized = false;
-
-    void Start()
-    {
-        BindButtons();
-    }
 
     void Awake()
     {
@@ -50,7 +42,6 @@ public class LevelBridgeManager : MonoBehaviour
     {
         if (scene.name == "HubScene")
         {
-            updateUiDisplays();
             BindButtons();
         }
     }
@@ -62,7 +53,6 @@ public class LevelBridgeManager : MonoBehaviour
         {
             mathBtn.onClick.RemoveAllListeners();
             mathBtn.onClick.AddListener(() => clickSubject("Math"));
-            Debug.Log("MathButton привязана");
         }
 
         var progBtn = GameObject.Find("ProgrammingButton")?.GetComponent<UnityEngine.UI.Button>();
@@ -70,7 +60,6 @@ public class LevelBridgeManager : MonoBehaviour
         {
             progBtn.onClick.RemoveAllListeners();
             progBtn.onClick.AddListener(() => clickSubject("Programming"));
-            Debug.Log("ProgrammingButton привязана");
         }
 
         var econBtn = GameObject.Find("EconomyButton")?.GetComponent<UnityEngine.UI.Button>();
@@ -78,25 +67,32 @@ public class LevelBridgeManager : MonoBehaviour
         {
             econBtn.onClick.RemoveAllListeners();
             econBtn.onClick.AddListener(() => clickSubject("Economy"));
-            Debug.Log("EconomyButton привязана");
         }
-    }
 
-    public void updateUiDisplays()
-    {
-        var mathText = GameObject.Find("MathGradeText")?.GetComponent<TextMeshProUGUI>();
-        var progText = GameObject.Find("ProgrammingGradeText")?.GetComponent<TextMeshProUGUI>();
-        var econText = GameObject.Find("EconomyGradeText")?.GetComponent<TextMeshProUGUI>();
-
-        if (mathText != null) mathText.text = mathGrade.ToString();
-        if (progText != null) progText.text = programmingGrade.ToString();
-        if (econText != null) econText.text = economyGrade.ToString();
+        var closeBtn = GameObject.Find("Button")?.GetComponent<UnityEngine.UI.Button>();
+        if (closeBtn != null)
+        {
+            closeBtn.onClick.RemoveAllListeners();
+            var endManager = FindObjectOfType<EndManager>();
+            if (endManager != null)
+            {
+                closeBtn.onClick.AddListener(endManager.CloseGradebookForever);
+                Debug.Log("CloseForeverButton привязана");
+            }
+            else
+            {
+                Debug.LogError("EndManager не найден в сцене!");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Кнопка CloseForeverButton не найдена!");
+        }
     }
 
     public void clickSubject(string subjectName)
     {
         currentActiveSubject = subjectName;
-
         if (subjectName == "Math") SceneManager.LoadScene("MathAnalysisGameScene");
         else if (subjectName == "Programming") SceneManager.LoadScene("ProgrammingScene");
         else if (subjectName == "Economy") SceneManager.LoadScene("EconimicGameScene");
@@ -115,11 +111,11 @@ public class LevelBridgeManager : MonoBehaviour
             distortionValue += 0.25f;
             distortionValue = Mathf.Clamp01(distortionValue);
 
-            updateUiDisplays();
         }
 
         SceneManager.LoadScene("HubScene");
     }
+
     public float GetAverageGrade()
     {
         return (mathGrade + programmingGrade + economyGrade) / 3f;
