@@ -9,6 +9,12 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+        
+        var noFriction = new PhysicsMaterial2D { friction = 0f, bounciness = 0f };
+        var col = GetComponent<Collider2D>();
+        if (col != null) col.sharedMaterial = noFriction;
     }
 
     void Update()

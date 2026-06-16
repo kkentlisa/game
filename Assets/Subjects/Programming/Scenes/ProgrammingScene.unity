@@ -238,7 +238,7 @@ RectTransform:
   m_GameObject: {fileID: 67933371}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5468, y: 2.5468, z: 1}
+  m_LocalScale: {x: 3.491791, y: 3.4915035, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1187101357}
@@ -246,7 +246,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -229, y: -137.29}
+  m_AnchoredPosition: {x: -324, y: -134}
   m_SizeDelta: {x: 198.014, y: 64.5762}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &67933373
@@ -751,15 +751,15 @@ RectTransform:
   m_GameObject: {fileID: 153493798}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.78907573, y: 0.4986339, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1033714072}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.05001831, y: 0.1499939}
-  m_SizeDelta: {x: -0.099976, y: 0.30001}
+  m_AnchorMin: {x: 0.080802366, y: 0.155}
+  m_AnchorMax: {x: 0.87869924, y: 0.87600005}
+  m_AnchoredPosition: {x: 3.9499817, y: -0.8500061}
+  m_SizeDelta: {x: 39.900024, y: 18.30001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &153493800
 MonoBehaviour:
@@ -1083,7 +1083,7 @@ RectTransform:
   m_GameObject: {fileID: 240441563}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5468, y: 2.5468, z: 1}
+  m_LocalScale: {x: 3.4413633, y: 3.46907, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1338942064}
@@ -1091,7 +1091,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 282.80124, y: -162.0293}
+  m_AnchoredPosition: {x: 364, y: -162}
   m_SizeDelta: {x: 198.014, y: 64.5762}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &240441565
@@ -1721,21 +1721,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TerminalData
   terminalName: 
   easyTask:
-    questionText: "\u041F\u043E\u0438\u0441\u043A \u043E\u0448\u0438\u0431\u043A\u0438.
-      \u0412\u044B\u0431\u0435\u0440\u0438 \u0441\u0442\u0440\u043E\u043A\u0443,
-      \u0432 \u043A\u043E\u0442\u043E\u0440\u043E\u0439 \u0434\u043E\u043F\u0443\u0449\u0435\u043D\u0430
-      \u0441\u0438\u043D\u0442\u0430\u043A\u0441\u0438\u0447\u0435\u0441\u043A\u0430\u044F
-      \u043E\u0448\u0438\u0431\u043A\u0430 \u0432 C#:"
-    correctAnswer: int x = "5"
-    wrongAnswer: bool y = true;
+    questionText: "Easy\t\u0427\u0442\u043E \u0434\u0435\u043B\u0430\u0435\u0442
+      \u0446\u0438\u043A\u043B for?"
+    correctAnswer: "\u041F\u043E\u0432\u0442\u043E\u0440\u044F\u0435\u0442 \u0431\u043B\u043E\u043A
+      \u043A\u043E\u0434\u0430 \u0437\u0430\u0434\u0430\u043D\u043D\u043E\u0435 \u0447\u0438\u0441\u043B\u043E
+      \u0440\u0430\u0437"
+    wrongAnswer: "\u041F\u0440\u043E\u0432\u0435\u0440\u044F\u0435\u0442 \u0443\u0441\u043B\u043E\u0432\u0438\u0435
+      \u0438 \u0432\u044B\u043F\u043E\u043B\u043D\u044F\u0435\u0442 \u043A\u043E\u0434
+      \u043E\u0434\u0438\u043D \u0440\u0430\u0437"
   mediumTask:
-    questionText: 
-    correctAnswer: 
-    wrongAnswer: 
+    questionText: "\u0427\u0435\u043C \u043E\u0442\u043B\u0438\u0447\u0430\u0435\u0442\u0441\u044F
+      while \u043E\u0442 do-while?"
+    correctAnswer: "\u0412 do-while \u0442\u0435\u043B\u043E \u0432\u044B\u043F\u043E\u043B\u043D\u044F\u0435\u0442\u0441\u044F
+      \u0445\u043E\u0442\u044F \u0431\u044B \u043E\u0434\u0438\u043D \u0440\u0430\u0437"
+    wrongAnswer: "\u0412 while \u0442\u0435\u043B\u043E \u0432\u044B\u043F\u043E\u043B\u043D\u044F\u0435\u0442\u0441\u044F
+      \u0445\u043E\u0442\u044F \u0431\u044B \u043E\u0434\u0438\u043D \u0440\u0430\u0437"
   hardTask:
-    questionText: 
-    correctAnswer: 
-    wrongAnswer: 
+    questionText: "\u0427\u0442\u043E \u0442\u0430\u043A\u043E\u0435 \u0438\u0441\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u0435
+      (Exception)?"
+    correctAnswer: "\u041E\u0448\u0438\u0431\u043A\u0430, \u0432\u043E\u0437\u043D\u0438\u043A\u0448\u0430\u044F
+      \u0432\u043E \u0432\u0440\u0435\u043C\u044F \u0432\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u0438\u044F
+      \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u044B"
+    wrongAnswer: "\u0421\u0438\u043D\u0442\u0430\u043A\u0441\u0438\u0447\u0435\u0441\u043A\u0430\u044F
+      \u043E\u0448\u0438\u0431\u043A\u0430 \u043F\u0440\u0438 \u043D\u0430\u043F\u0438\u0441\u0430\u043D\u0438\u0438
+      \u043A\u043E\u0434\u0430"
 --- !u!114 &458736396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2118,24 +2127,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TerminalData
   terminalName: 
   easyTask:
-    questionText: "\u0423 \u0442\u0435\u0431\u044F \u0435\u0441\u0442\u044C \u0434\u0432\u0435
-      \u0441\u0442\u0440\u043E\u043A\u0438 \u043A\u043E\u0434\u0430:\\n1) print(x);\\n2)
-      x = \"Hello\";\\n\\n\u041A\u0430\u043A\u043E\u0439 \u043F\u043E\u0440\u044F\u0434\u043E\u043A
-      \u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u044B\u0439, \u0447\u0442\u043E\u0431\u044B
-      \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u0430 \u043E\u0442\u0440\u0430\u0431\u043E\u0442\u0430\u043B\u0430
-      \u0431\u0435\u0437 \u043E\u0448\u0438\u0431\u043E\u043A?"
-    correctAnswer: "\u0421\u043D\u0430\u0447\u0430\u043B\u0430 2, \u043F\u043E\u0442\u043E\u043C
-      1"
-    wrongAnswer: "\u0421\u043D\u0430\u0447\u0430\u043B\u0430 1, \u043F\u043E\u0442\u043E\u043C
-      2"
+    questionText: "\u041A\u0430\u043A\u043E\u0439 \u0442\u0438\u043F \u0434\u0430\u043D\u043D\u044B\u0445
+      \u0445\u0440\u0430\u043D\u0438\u0442 \u0446\u0435\u043B\u044B\u0435 \u0447\u0438\u0441\u043B\u0430?"
+    correctAnswer: int
+    wrongAnswer: string
   mediumTask:
-    questionText: 
-    correctAnswer: 
-    wrongAnswer: 
+    questionText: "\u0427\u0442\u043E \u0442\u0430\u043A\u043E\u0435 \u043C\u0430\u0441\u0441\u0438\u0432?"
+    correctAnswer: "\u041D\u0430\u0431\u043E\u0440 \u044D\u043B\u0435\u043C\u0435\u043D\u0442\u043E\u0432
+      \u043E\u0434\u043D\u043E\u0433\u043E \u0442\u0438\u043F\u0430 \u0441 \u0434\u043E\u0441\u0442\u0443\u043F\u043E\u043C
+      \u043F\u043E \u0438\u043D\u0434\u0435\u043A\u0441\u0443"
+    wrongAnswer: "\u0424\u0443\u043D\u043A\u0446\u0438\u044F \u0434\u043B\u044F \u0441\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u043A\u0438
+      \u0434\u0430\u043D\u043D\u044B\u0445"
   hardTask:
-    questionText: 
-    correctAnswer: 
-    wrongAnswer: 
+    questionText: "\u0427\u0442\u043E \u0434\u0435\u043B\u0430\u0435\u0442 \u043E\u043F\u0435\u0440\u0430\u0442\u043E\u0440
+      break \u0432\u043D\u0443\u0442\u0440\u0438 \u0446\u0438\u043A\u043B\u0430?"
+    correctAnswer: "\u041F\u0440\u0435\u0440\u044B\u0432\u0430\u0435\u0442 \u0446\u0438\u043A\u043B
+      \u0438 \u0432\u044B\u0445\u043E\u0434\u0438\u0442 \u0438\u0437 \u043D\u0435\u0433\u043E"
+    wrongAnswer: "\u041F\u0435\u0440\u0435\u0445\u043E\u0434\u0438\u0442 \u043A \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0435\u0439
+      \u0438\u0442\u0435\u0440\u0430\u0446\u0438\u0438"
 --- !u!114 &629506357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3177,19 +3186,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TerminalData
   terminalName: 
   easyTask:
-    questionText: "\u041A\u0430\u043A\u043E\u0435 \u043B\u043E\u0433\u0438\u0447\u0435\u0441\u043A\u043E\u0435
-      \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435 \u0432\u0435\u0440\u043D\u0435\u0442
-      \u0432\u044B\u0440\u0430\u0436\u0435\u043D\u0438\u0435: \\n\\n true && false"
-    correctAnswer: false
-    wrongAnswer: true
+    questionText: "\u0427\u0442\u043E \u0442\u0430\u043A\u043E\u0435 \u043F\u0435\u0440\u0435\u043C\u0435\u043D\u043D\u0430\u044F
+      \u0432 \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0438?"
+    correctAnswer: "\u0418\u043C\u0435\u043D\u043E\u0432\u0430\u043D\u043D\u043E\u0435
+      \u043C\u0435\u0441\u0442\u043E \u0432 \u043F\u0430\u043C\u044F\u0442\u0438
+      \u0434\u043B\u044F \u0445\u0440\u0430\u043D\u0435\u043D\u0438\u044F \u0434\u0430\u043D\u043D\u044B\u0445"
+    wrongAnswer: "\u041A\u043E\u043C\u0430\u043D\u0434\u0430 \u0434\u043B\u044F \u0432\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u0438\u044F
+      \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044F"
   mediumTask:
-    questionText: 
-    correctAnswer: 
-    wrongAnswer: 
+    questionText: "\u0427\u0442\u043E \u0434\u0435\u043B\u0430\u0435\u0442 \u043E\u043F\u0435\u0440\u0430\u0442\u043E\u0440
+      == \u0432 \u043A\u043E\u0434\u0435?"
+    correctAnswer: "\u0421\u0440\u0430\u0432\u043D\u0438\u0432\u0430\u0435\u0442
+      \u0434\u0432\u0430 \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u044F \u043D\u0430
+      \u0440\u0430\u0432\u0435\u043D\u0441\u0442\u0432\u043E"
+    wrongAnswer: "\u041F\u0440\u0438\u0441\u0432\u0430\u0438\u0432\u0430\u0435\u0442
+      \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435 \u043F\u0435\u0440\u0435\u043C\u0435\u043D\u043D\u043E\u0439"
   hardTask:
-    questionText: 
-    correctAnswer: 
-    wrongAnswer: 
+    questionText: "\u0427\u0442\u043E \u0442\u0430\u043A\u043E\u0435 \u0440\u0435\u043A\u0443\u0440\u0441\u0438\u044F?"
+    correctAnswer: "\u0424\u0443\u043D\u043A\u0446\u0438\u044F, \u043A\u043E\u0442\u043E\u0440\u0430\u044F
+      \u0432\u044B\u0437\u044B\u0432\u0430\u0435\u0442 \u0441\u0430\u043C\u0430 \u0441\u0435\u0431\u044F"
+    wrongAnswer: "\u0426\u0438\u043A\u043B, \u043A\u043E\u0442\u043E\u0440\u044B\u0439
+      \u043F\u043E\u0432\u0442\u043E\u0440\u044F\u0435\u0442\u0441\u044F \u0431\u0435\u0441\u043A\u043E\u043D\u0435\u0447\u043D\u043E"
 --- !u!114 &1014530052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3230,7 +3247,7 @@ RectTransform:
   m_GameObject: {fileID: 1033714071}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5468, y: 2.5468, z: 2.5468}
+  m_LocalScale: {x: 3.50185, y: 3.5021045, z: 2.5468}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 153493799}
@@ -3238,7 +3255,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -226.40707, y: -162.02934}
+  m_AnchoredPosition: {x: -320, y: -162.17}
   m_SizeDelta: {x: 198.014, y: 64.5762}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1033714073
@@ -3709,15 +3726,15 @@ RectTransform:
   m_GameObject: {fileID: 1187101356}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.79999, y: 0.6375, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 67933372}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 4.2}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.010100296, y: 0.062000003}
+  m_AnchorMax: {x: 0.9747493, y: 0.938}
+  m_AnchoredPosition: {x: 1.5, y: 4.2}
+  m_SizeDelta: {x: 7, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1187101358
 MonoBehaviour:
@@ -4084,7 +4101,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.92156863, g: 0.5882353, b: 0.3764706, a: 1}
+  m_Color: {r: 0.29803923, g: 0.22352941, b: 0.23137255, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4135,7 +4152,7 @@ RectTransform:
   m_GameObject: {fileID: 1338942063}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8437045, y: 0.58586764, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 240441564}
@@ -5533,7 +5550,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.07817807, b: 0, a: 1}
+  m_Color: {r: 0.7830189, g: 0.07162463, b: 0.0110804355, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
