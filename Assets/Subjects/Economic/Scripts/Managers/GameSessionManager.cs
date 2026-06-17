@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
 
 public class GameSessionManager : MonoBehaviour
 {
@@ -9,8 +8,11 @@ public class GameSessionManager : MonoBehaviour
     [SerializeField] float gameDuration = 120f;
     [SerializeField] private TextMeshProUGUI timerText;
 
+    [SerializeField] private GameObject rulesOverlay;
+    [SerializeField] private GameObject gameplayUIContainer;
+
     private float timeRemaining;
-    private bool isGameActive = true;
+    private bool isGameActive = false;
     private LevelManager levelManager;
 
     private void Awake()
@@ -23,6 +25,20 @@ public class GameSessionManager : MonoBehaviour
         timeRemaining = gameDuration;
 
         levelManager = FindAnyObjectByType<LevelManager>();
+
+        if (rulesOverlay != null)
+        {
+            rulesOverlay.SetActive(true);
+        }
+
+        if (gameplayUIContainer != null)
+        {
+            gameplayUIContainer.SetActive(false);
+        }
+        UpdateTimerUI();
+
+        Time.timeScale = 0f;
+        isGameActive = false;
     }
 
     private void Update()
@@ -41,6 +57,21 @@ public class GameSessionManager : MonoBehaviour
         }
     }
 
+    public void StartLesson()
+    {
+        Time.timeScale = 1f;
+        isGameActive = true;
+
+        if (rulesOverlay != null)
+        {
+            rulesOverlay.SetActive(false);
+        }
+        if (gameplayUIContainer != null)
+        {
+            gameplayUIContainer.SetActive(true);
+        }
+    }
+
     private void UpdateTimerUI()
     {
         if (timerText == null) return;
@@ -54,6 +85,7 @@ public class GameSessionManager : MonoBehaviour
     private void EndGameSession()
     {
         isGameActive = false;
+        Time.timeScale = 0f;
 
         if (ScoreManager.Instance == null) return;
 
