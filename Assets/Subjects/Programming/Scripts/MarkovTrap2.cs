@@ -91,7 +91,7 @@ public class MarkovTrapAI2 : MonoBehaviour
     {
         Vector3 spawnPos = new Vector3(currentCell.x * cellSize, currentCell.y * cellSize, 0);
 
-        float step = cellSize*3;
+        float step = cellSize*2;
         if (direction == "Right") spawnPos += new Vector3(step, 0, 0);
         else if (direction == "Left") spawnPos -= new Vector3(step, 0, 0);
         else if (direction == "Up") spawnPos += new Vector3(0, step, 0);

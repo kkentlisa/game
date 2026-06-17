@@ -6,14 +6,14 @@ public class ClassroomNetwork : MonoBehaviour
     [System.Serializable]
     public class Node
     {
-        public string name; // Название для удобства (например, "У доски", "Проход 1")
-        public Vector2 position; // Координата точки
-        public List<int> connectedNodeIndices = new List<int>(); // Индексы точек, куда отсюда можно пойти
+        public string name;
+        public Vector2 position;
+        public List<int> connectedNodeIndices = new List<int>();
     }
 
     public List<Node> allNodes = new List<Node>();
 
-    // Находим ближайшую точку к любому объекту (например, к записке)
+    // Получение индекса ближайшей ноды к заданной позиции
     public int GetClosestNodeIndex(Vector2 position)
     {
         int closestIndex = 0;
@@ -31,7 +31,7 @@ public class ClassroomNetwork : MonoBehaviour
         return closestIndex;
     }
 
-    // Рисуем линии путей прямо в окне Scene, чтобы тебе было удобно их настраивать!
+    // Получение списка индексов соседних нод для заданной ноды
     void OnDrawGizmos()
     {
         if (allNodes == null) return;

@@ -1,6 +1,6 @@
 using UnityEngine;
-using TMPro; // Обязательно для работы с TextMeshPro
-using UnityEngine.SceneManagement;
+using TMPro; 
+
 public class EyeContactController : MonoBehaviour
 {
     [Header("Ссылки на объекты игры")]
@@ -34,6 +34,7 @@ public class EyeContactController : MonoBehaviour
     [Tooltip("Скорость мигания надписи")]
     private float blinkSpeed = 0.25f;
 
+    // Инициализация ссылок и начальных состояний
     void Start()
     {
         mainCamera = Camera.main;
@@ -47,8 +48,10 @@ public class EyeContactController : MonoBehaviour
         if (timerText != null) timerText.gameObject.SetActive(false);
     }
 
+    // Основная логика проверки контакта и управления таймером
     void Update()
     {
+        // Если какие-то ключевые ссылки не установлены, просто выходим из метода
         if (teacherTransform == null || teacherSpriteRenderer == null || mainCamera == null) return;
 
         if (IsTargetVisibleByCamera(teacherSpriteRenderer))
@@ -60,12 +63,12 @@ public class EyeContactController : MonoBehaviour
             {
                 UpdateTimerDigits();
             }
-
+            
             if (contactTimer >= timeToShowText)
             {
                 HandleTextBlinking();
             }
-
+            
             if (contactTimer >= maxContactTime)
             {
                 TriggerEyeContactGameOver();
@@ -80,6 +83,7 @@ public class EyeContactController : MonoBehaviour
 
                 UpdateTimerDigits();
 
+                // Если таймер опустился ниже порога отображения текста, скрываем его
                 if (contactTimer < timeToShowText && warningText != null && warningText.gameObject.activeSelf)
                 {
                     warningText.gameObject.SetActive(false);
@@ -93,6 +97,7 @@ public class EyeContactController : MonoBehaviour
         }
     }
 
+    // Обновление текста таймера в формате MM:SS:FF
     void UpdateTimerDigits()
     {
         if (timerText == null) return;
@@ -109,6 +114,7 @@ public class EyeContactController : MonoBehaviour
         timerText.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, fraction);
     }
 
+    // Управление миганием текста предупреждения
     void HandleTextBlinking()
     {
         if (warningText == null) return;
@@ -139,9 +145,10 @@ public class EyeContactController : MonoBehaviour
     void TriggerEyeContactGameOver()
     {
         Debug.LogError("6 секунд истекли! Выход.");
-        if (LevelBridgeManager.instance != null)
-            LevelBridgeManager.instance.finishLevel(false);
-        else
-            SceneManager.LoadScene("HubScene");
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit(); 
+#endif
     }
 }
