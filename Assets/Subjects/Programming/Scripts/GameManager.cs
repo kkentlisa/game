@@ -84,40 +84,43 @@ public class GameManager : MonoBehaviour
 
         if (baseDifficulty == LevelDifficulty.Easy)
         {
-            targetDamage = 2f;
-            targetTickRate = 2.0f;
+            // Easy: урон минимальный, ловушки появляются редко
+            targetDamage = 1f;
+            targetTickRate = 3.5f;
 
-            if (currentHealth < 30f)
+            if (currentHealth < maxHealth * 0.3f)
             {
-                targetDamage = 1f;
-                targetTickRate = 2.5f;
+                targetDamage = 0.5f;
+                targetTickRate = 4.0f;
             }
         }
         else if (baseDifficulty == LevelDifficulty.Medium)
         {
-            targetDamage = 4f;
-            targetTickRate = 1.5f;
+            // Medium: умеренный урон, средняя частота ловушек
+            targetDamage = 2f;
+            targetTickRate = 2.5f;
 
-            if (currentHealth < 25f)
+            if (currentHealth < maxHealth * 0.3f)
             {
-                targetDamage = 2f;
-                targetTickRate = 1.8f;
+                targetDamage = 1f;
+                targetTickRate = 3.0f;
             }
-            else if (currentHealth > 80f && timeSinceLastDamage > 15f)
+            else if (currentHealth > maxHealth * 0.8f && timeSinceLastDamage > 20f)
             {
-                targetDamage = 7f;
-                targetTickRate = 1.2f;
+                targetDamage = 3f;
+                targetTickRate = 2.0f;
             }
         }
         else
         {
-            targetDamage = 7f;
-            targetTickRate = 1.0f;
+            // Hard: ощутимый урон, но всё ещё проходимо
+            targetDamage = 3f;
+            targetTickRate = 2.0f;
 
-            if (currentHealth > 70f && timeSinceLastDamage > 10f)
+            if (currentHealth > maxHealth * 0.7f && timeSinceLastDamage > 15f)
             {
-                targetDamage = 9f;
-                targetTickRate = 0.7f;
+                targetDamage = 5f;
+                targetTickRate = 1.5f;
             }
         }
 
@@ -182,22 +185,13 @@ public class GameManager : MonoBehaviour
 
         TaskInfo currentTask = currentTerminalData.GetTaskForCurrentDifficulty();
 
-        if (baseDifficulty == LevelDifficulty.Hard)
-        {
-            if (sortingTaskPanel != null) sortingTaskPanel.SetActive(true);
-            if (selectionTaskPanel != null) selectionTaskPanel.SetActive(false);
+        // Все уровни используют панель выбора вариантов
+        if (selectionTaskPanel != null) selectionTaskPanel.SetActive(true);
+        if (sortingTaskPanel != null) sortingTaskPanel.SetActive(false);
 
-            if (sortingQuestionText != null) sortingQuestionText.text = currentTask.questionText;
-        }
-        else
-        {
-            if (selectionTaskPanel != null) selectionTaskPanel.SetActive(true);
-            if (sortingTaskPanel != null) sortingTaskPanel.SetActive(false);
-
-            if (selectionQuestionText != null) selectionQuestionText.text = currentTask.questionText;
-            if (selectionCorrectBtnText != null) selectionCorrectBtnText.text = currentTask.correctAnswer;
-            if (selectionWrongBtnText != null) selectionWrongBtnText.text = currentTask.wrongAnswer;
-        }
+        if (selectionQuestionText != null) selectionQuestionText.text = currentTask.questionText;
+        if (selectionCorrectBtnText != null) selectionCorrectBtnText.text = currentTask.correctAnswer;
+        if (selectionWrongBtnText != null) selectionWrongBtnText.text = currentTask.wrongAnswer;
     }
 
     public void OnCorrectAnswer()
@@ -209,10 +203,10 @@ public class GameManager : MonoBehaviour
     {
         float penalty = baseDifficulty switch
         {
-            LevelDifficulty.Easy => 10f,
-            LevelDifficulty.Medium => 20f,
-            LevelDifficulty.Hard => 30f,
-            _ => 10f
+            LevelDifficulty.Easy => 5f,
+            LevelDifficulty.Medium => 10f,
+            LevelDifficulty.Hard => 15f,
+            _ => 5f
         };
         TakeDamage(penalty);
         CloseTerminal(false);

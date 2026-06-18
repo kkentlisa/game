@@ -42,7 +42,7 @@ public class MazeGenerator : MonoBehaviour
         {
             GenerateNewMaze();
 
-            float delay = 15f; 
+            float delay = 15f;
 
             if (GameManager.Instance != null)
             {
@@ -54,11 +54,11 @@ public class MazeGenerator : MonoBehaviour
                         break;
 
                     case LevelDifficulty.Medium:
-                        delay = 30f; 
+                        delay = 90f; 
                         break;
 
                     case LevelDifficulty.Hard:
-                        delay = 10f;
+                        delay = 45f; 
                         break;
                 }
             }
@@ -66,15 +66,15 @@ public class MazeGenerator : MonoBehaviour
             if (shouldRepeat)
             {
                 yield return new WaitForSeconds(delay);
+                foreach (var wall in spawnedWalls) Destroy(wall);
+                spawnedWalls.Clear();
+                yield return null;
             }
         }
     }
 
     void GenerateNewMaze()
     {
-        foreach (var wall in spawnedWalls) Destroy(wall);
-        spawnedWalls.Clear();
-
         maze = new MazeCell[width, height];
         for (int x = 0; x < width; x++)
         {
