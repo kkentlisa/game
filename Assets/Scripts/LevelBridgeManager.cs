@@ -73,7 +73,7 @@ public class LevelBridgeManager : MonoBehaviour
         if (closeBtn != null)
         {
             closeBtn.onClick.RemoveAllListeners();
-            var endManager = FindObjectOfType<EndManager>();
+            EndManager endManager = FindObjectOfType<EndManager>();
             if (endManager != null)
             {
                 closeBtn.onClick.AddListener(endManager.CloseGradebookForever);
@@ -110,7 +110,6 @@ public class LevelBridgeManager : MonoBehaviour
 
             distortionValue += 0.25f;
             distortionValue = Mathf.Clamp01(distortionValue);
-
         }
 
         SceneManager.LoadScene("HubScene");
