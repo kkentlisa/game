@@ -16,7 +16,6 @@ public class AuthAndGradebook : MonoBehaviour
         if (gradebookClickable != null) gradebookClickable.SetActive(false);
 
         authButton.onClick.AddListener(Authorize);
-
         LoadSavedName();
     }
 
@@ -50,17 +49,12 @@ public class AuthAndGradebook : MonoBehaviour
         PlayerPrefs.Save();
 
         LevelBridgeManager.instance.isAuthorized = true;
-
-        if (LevelBridgeManager.instance != null && LevelBridgeManager.instance.isAuthorized)
-        {
-            LevelBridgeManager.instance.playerName = nameInput.text;
-        }
+        LevelBridgeManager.instance.playerName = nameInput.text;
 
         if (authPanel != null)
             authPanel.SetActive(false);
 
         if (gradebookClickable != null)
             gradebookClickable.SetActive(true);
-
     }
 }

@@ -16,6 +16,7 @@ public class EndManager : MonoBehaviour
 
     public void CloseGradebookForever()
     {
+        Debug.Log("CloseGradebookForever ÂÛÇÂÀÍ");
         if (LevelBridgeManager.instance == null) return;
 
         float averageGrade = LevelBridgeManager.instance.GetAverageGrade();

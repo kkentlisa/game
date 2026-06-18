@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class ClickableGradebook : MonoBehaviour
 {
-
     public GameObject gradebookUI;
     private bool isActive = false;
 
@@ -24,6 +23,8 @@ public class ClickableGradebook : MonoBehaviour
     {
         if (LevelBridgeManager.instance != null && LevelBridgeManager.instance.isAuthorized)
             isActive = true;
+        else
+            isActive = false;
     }
 
     public void CloseGradebook()
