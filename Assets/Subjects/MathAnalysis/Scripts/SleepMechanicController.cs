@@ -27,6 +27,12 @@ public class SleepMechanicController : MonoBehaviour
             initialSignScale = warningSignRenderer.transform.localScale;
             warningSignRenderer.color = new Color(1f, 1f, 1f, 0f);
         }
+
+
+        sleepiness = 0f;
+        UpdateVignetteAlpha(0f);
+
+        isHandlingState = false;
     }
 
     IEnumerator WakeUpRoutine()
