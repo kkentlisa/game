@@ -36,12 +36,10 @@ public class RandomWanderingAI : MonoBehaviour
             rb.freezeRotation = true;
         }
 
-        // Автоматически находим карту дорог на сцене
         roadNetwork = Object.FindFirstObjectByType<ClassroomNetwork>();
 
         if (roadNetwork != null && roadNetwork.allNodes.Count > 0)
         {
-            // Телепортируем Учителя на ближайшую стартовую точку сети
             currentNodeIndex = roadNetwork.GetClosestNodeIndex(transform.position);
             transform.position = roadNetwork.allNodes[currentNodeIndex].position;
             StartCoroutine(NavigateNetworkRoutine());
@@ -64,11 +62,9 @@ public class RandomWanderingAI : MonoBehaviour
 
     void Update()
     {
-        // Псевдо-3D эффект: меняем размер учителя в зависимости от координаты Y
         float t = Mathf.InverseLerp(maxYPosition, minYPosition, transform.position.y);
         float currentScale = Mathf.Lerp(minScale, maxScale, t);
 
-        // Определяем направление движения по X и разворачиваем спрайт в нужную сторону
         float directionSign = transform.localScale.x > 0 ? 1f : -1f;
         if (isMoving && targetNodeIndex != -1)
         {
@@ -78,20 +74,17 @@ public class RandomWanderingAI : MonoBehaviour
         }
         transform.localScale = new Vector3(currentScale * directionSign, currentScale, 1f);
 
-        // Устанавливаем сортировку спрайта в зависимости от Y позиции для правильного наложения
         if (spriteRenderer != null)
         {
             spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * -100f);
         }
 
-        // Управляем анимацией движения
         if (animator != null)
         {
             animator.SetBool("isMoving", isMoving);
         }
     }
 
-    // Основной корутин для навигации по сети дорог, выбора следующей точки и управления движением
     IEnumerator NavigateNetworkRoutine()
     {
         yield return new WaitForSeconds(0.5f);
@@ -100,7 +93,6 @@ public class RandomWanderingAI : MonoBehaviour
         {
             if (roadNetwork == null || roadNetwork.allNodes.Count == 0) yield return null;
 
-            // Выбираем следующую точку для шага
             targetNodeIndex = ChooseNextNode();
 
             if (targetNodeIndex != -1)
@@ -108,7 +100,6 @@ public class RandomWanderingAI : MonoBehaviour
                 isMoving = true;
                 Vector2 targetPos = roadNetwork.allNodes[targetNodeIndex].position;
 
-                // Плавно идем к точке
                 while (Vector2.Distance(rb.position, targetPos) > 0.05f)
                 {
                     Vector2 newPos = Vector2.MoveTowards(rb.position, targetPos, moveSpeed * Time.deltaTime);
@@ -120,7 +111,6 @@ public class RandomWanderingAI : MonoBehaviour
                 currentNodeIndex = targetNodeIndex;
                 isMoving = false;
 
-                // Стоим на точке отдыхаем
                 yield return new WaitForSeconds(pauseTime);
             }
             else
@@ -130,24 +120,20 @@ public class RandomWanderingAI : MonoBehaviour
         }
     }
 
-    // Метод для выбора следующей точки на основе наличия активной записки и расстояния до нее
     int ChooseNextNode()
     {
         var currentNode = roadNetwork.allNodes[currentNodeIndex];
         if (currentNode.connectedNodeIndices.Count == 0) return -1;
 
-        // ЕСЛИ ЕСТЬ ЗАПИСКА: Ищем точку, которая ближе всего к записке
         if (activeNoteTransform != null)
         {
             int closestNodeToNote = roadNetwork.GetClosestNodeIndex(activeNoteTransform.position);
 
-            // Если мы уже стоим в ближайшей к записке точке, покружимся по ее соседям
             if (currentNodeIndex == closestNodeToNote)
             {
                 return currentNode.connectedNodeIndices[Random.Range(0, currentNode.connectedNodeIndices.Count)];
             }
 
-            // Иначе выбираем из доступных путей тот узел, который сократит расстояние до записки
             int bestNodeIndex = currentNode.connectedNodeIndices[0];
             float minTargetDist = float.MaxValue;
 
@@ -163,7 +149,6 @@ public class RandomWanderingAI : MonoBehaviour
             return bestNodeIndex;
         }
 
-        // ЕСЛИ ЗАПИСКИ НЕТ: Просто идем на случайного соседа
         return currentNode.connectedNodeIndices[Random.Range(0, currentNode.connectedNodeIndices.Count)];
     }
 }

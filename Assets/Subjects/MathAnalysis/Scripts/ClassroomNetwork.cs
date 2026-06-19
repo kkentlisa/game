@@ -13,7 +13,6 @@ public class ClassroomNetwork : MonoBehaviour
 
     public List<Node> allNodes = new List<Node>();
 
-    // Получение индекса ближайшей ноды к заданной позиции
     public int GetClosestNodeIndex(Vector2 position)
     {
         int closestIndex = 0;
@@ -31,7 +30,6 @@ public class ClassroomNetwork : MonoBehaviour
         return closestIndex;
     }
 
-    // Получение списка индексов соседних нод для заданной ноды
     void OnDrawGizmos()
     {
         if (allNodes == null) return;

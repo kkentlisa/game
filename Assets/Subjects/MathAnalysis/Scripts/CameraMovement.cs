@@ -15,14 +15,12 @@ public class CameraMovement : MonoBehaviour
 
     private float minX, maxX, minY, maxY;
 
-    // Инициализация границ движения камеры на основе размера фона
     void Start()
     {
         if (backgroundSprite == null) return;
         CalculateBoundaries();
     }
 
-    //Настройки камеры для ограничения движения в пределах фона
     void CalculateBoundaries()
     {
         Camera cam = GetComponent<Camera>();
@@ -39,7 +37,6 @@ public class CameraMovement : MonoBehaviour
         if (minY > maxY) minY = maxY = bgPos.y;
     }
 
-    // Движение камеры и эффекты
     void LateUpdate()
     {
         if (backgroundSprite == null) return;
@@ -67,7 +64,6 @@ public class CameraMovement : MonoBehaviour
         transform.position = new Vector3(clampedX, clampedY, transform.position.z);
     }
 
-    // Вызов этого метода извне для обновления границ, например, при изменении размера фона
     public void RefreshBoundaries()
     {
         CalculateBoundaries();

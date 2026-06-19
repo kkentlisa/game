@@ -51,6 +51,9 @@ TagManager:
   - name: OverObstacles
     uniqueID: 429694383
     locked: 0
+  - name: Button
+    uniqueID: 1348094697
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1

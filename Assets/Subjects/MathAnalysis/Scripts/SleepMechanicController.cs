@@ -27,13 +27,8 @@ public class SleepMechanicController : MonoBehaviour
             initialSignScale = warningSignRenderer.transform.localScale;
             warningSignRenderer.color = new Color(1f, 1f, 1f, 0f);
         }
-
-        sleepiness = 1f;
-        UpdateVignetteAlpha(1f);
-        StartCoroutine(WakeUpRoutine());
     }
 
-    // Последовательность пробуждения с постепенным уменьшением эффекта сна
     IEnumerator WakeUpRoutine()
     {
         isHandlingState = true;
@@ -116,7 +111,6 @@ public class SleepMechanicController : MonoBehaviour
         StartCoroutine(FallAsleepSequence());
     }
 
-    // Последовательность засыпания с постепенным усилением эффекта сна и затем выходом из приложения
     IEnumerator FallAsleepSequence()
     {
         isHandlingState = true;
@@ -149,10 +143,13 @@ public class SleepMechanicController : MonoBehaviour
 
         UpdateVignetteAlpha(1f);
         if (warningSignRenderer != null) warningSignRenderer.color = new Color(1f, 1f, 1f, 0f);
-
-        Application.Quit();
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
+        if (LevelBridgeManager.instance != null)
+        {
+            LevelBridgeManager.instance.finishLevel(false);
+        }
+        else
+        {
+            SceneManager.LoadScene("HubScene");
+        }
     }
 }

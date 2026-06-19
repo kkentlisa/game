@@ -18,7 +18,6 @@ public class NoteInteraction : MonoBehaviour
     [Tooltip("Перетащи сюда аудио-файл шуршания бумаги")]
     public AudioClip collectSound;
 
-    // Инициализация компонентов и начальных состояний
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -39,7 +38,6 @@ public class NoteInteraction : MonoBehaviour
             spawner = Object.FindFirstObjectByType<NotesSpawner>();
     }
 
-    // Проверка наведения мыши и кликов для взаимодействия с запиской
     void Update()
     {
         CheckMouseHover();
@@ -50,7 +48,6 @@ public class NoteInteraction : MonoBehaviour
         }
     }
 
-    // Метод для проверки наведения мыши на записку и управления подсветкой
     void CheckMouseHover()
     {
         if (mainCam == null) return;
@@ -60,7 +57,6 @@ public class NoteInteraction : MonoBehaviour
 
         Collider2D hit = Physics2D.OverlapPoint(mousePos2D);
 
-        // Если курсор находится над запиской, включаем подсветку, иначе отключаем
         if (hit != null && hit.gameObject == gameObject)
         {
             if (!isMouseOver) SetHighlight(true);
@@ -71,7 +67,6 @@ public class NoteInteraction : MonoBehaviour
         }
     }
 
-    // Метод для управления подсветкой записки при наведении мыши
     void SetHighlight(bool highlight)
     {
         isMouseOver = highlight;
@@ -80,7 +75,6 @@ public class NoteInteraction : MonoBehaviour
         {
             outlineObject.SetActive(highlight);
         }
-        // Увеличиваем размер записки при наведении и возвращаем к оригинальному при отведении
         transform.localScale = highlight ? originalScale * scaleUpFactor : originalScale;
 
         if (sr != null)
@@ -89,7 +83,6 @@ public class NoteInteraction : MonoBehaviour
         }
     }
 
-    // Метод для обработки сбора записки: воспроизведение звука, уведомление спавнера, отключение коллайдера и визуальных компонентов
     void CollectNote()
     {
         if (spawner == null) spawner = Object.FindFirstObjectByType<NotesSpawner>();

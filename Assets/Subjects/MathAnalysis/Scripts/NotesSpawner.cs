@@ -13,7 +13,6 @@ public class NotesSpawner : MonoBehaviour
 
     private RandomWanderingAI teacherAI;
 
-    // Инициализация спавнера, подготовка локаций и установка целей уровня
     void Start()
     {
         if (levelController == null)
@@ -43,7 +42,6 @@ public class NotesSpawner : MonoBehaviour
 
     void Update() { }
 
-    // Метод для спавна следующей записки, проверка условий и управление ИИ учителя
     public void SpawnNextBatch()
     {
         if (totalSpawnedCount < goal && activeOnScreen < 3 && availableIndices.Count > 0)
@@ -72,7 +70,6 @@ public class NotesSpawner : MonoBehaviour
         }
     }
 
-    // Метод, вызываемый при сборе записки, обновление счетчиков и проверка условий победы
     public void OnNoteCollected()
     {
         activeOnScreen--;
